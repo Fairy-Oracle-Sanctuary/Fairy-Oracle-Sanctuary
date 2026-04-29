@@ -9,7 +9,7 @@
 > Official website for Fairy Oracle Sanctuary
 
 <p align="center">
-<a href="README_en.md">English</a> | <a href="README.md">简体中文</a></a> 
+<a href="README.md">English</a> | <a href="README.zh.md">简体中文</a></a> 
 </p>
 
 🌐 **Live Site**: [https://fairy-oracle-sanctuary.github.io/Fairy-Oracle-Sanctuary/](https://fairy-oracle-sanctuary.github.io/Fairy-Oracle-Sanctuary/)
