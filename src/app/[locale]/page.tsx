@@ -9,6 +9,9 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 
+// Base path for GitHub Pages deployment
+const basePath = process.env.NODE_ENV === 'production' ? '/Fairy-Oracle-Sanctuary' : '';
+
 const GithubIcon = ({ className }: { className?: string }) => (
   <svg 
     role="img" 
@@ -97,7 +100,7 @@ export default function Home() {
           <div className="flex items-center gap-3">
             <div className="relative w-10 h-10 overflow-hidden rounded-xl border border-gray-100 shadow-sm">
               <Image 
-                src="/images/icon_128X128.png" 
+                src={`${basePath}/images/icon_128X128.png`} 
                 alt="FOS Logo" 
                 fill
                 className="object-cover"
@@ -227,7 +230,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="relative w-16 h-16 mx-auto mb-8 rounded-2xl overflow-hidden border border-gray-100 shadow-md">
             <Image 
-              src="/images/icon_128X128.png" 
+              src={`${basePath}/images/icon_128X128.png`} 
               alt="FOS Logo" 
               fill
               className="object-cover"
