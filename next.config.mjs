@@ -10,8 +10,8 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  // Only use basePath in production for GitHub Pages
-  basePath: isProd ? '/Fairy-Oracle-Sanctuary' : '',
+  // No basePath needed for custom domain
+  basePath: '',
 };
 
 export default withNextIntl(nextConfig);

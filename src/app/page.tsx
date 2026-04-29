@@ -7,11 +7,8 @@ export default function RootPage() {
   useEffect(() => {
     const browserLang = navigator.language.split('-')[0];
     const targetLocale = locales.includes(browserLang as Locale) ? (browserLang as Locale) : defaultLocale;
-    const basePath = process.env.NODE_ENV === 'production' ? '/Fairy-Oracle-Sanctuary' : '';
-    window.location.href = `${basePath}/${targetLocale}`;
+    window.location.href = `/${targetLocale}`;
   }, []);
-
-  const basePath = process.env.NODE_ENV === 'production' ? '/Fairy-Oracle-Sanctuary' : '';
 
   return (
     <div className="min-h-screen bg-[#FAFAFA] flex items-center justify-center">
@@ -26,7 +23,7 @@ export default function RootPage() {
         <p className="text-gray-500 mb-4">Loading...</p>
         <noscript>
           <a 
-            href={`${basePath}/${defaultLocale}`}
+            href={`/${defaultLocale}`}
             className="text-accent hover:underline font-medium"
           >
             Click here to continue
