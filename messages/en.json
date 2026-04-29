@@ -1,0 +1,54 @@
+{
+  "nav": {
+    "github": "GitHub"
+  },
+  "hero": {
+    "title": "Connect The World with <goodwill>Goodwill</goodwill>",
+    "description": "天机阁 (Fairy Oracle Sanctuary) is a developer collective with the spirit of free software at its core and open-source collaboration as its method.",
+    "exploreButton": "Explore Repositories",
+    "manifestoButton": "Our Manifesto"
+  },
+  "values": {
+    "codeFree": {
+      "title": "Code is Free",
+      "description": "We prefer Copyleft licenses such as GPL or AGPL to ensure that software grants freedom to users rather than depriving them of it."
+    },
+    "peopleMatter": {
+      "title": "People Matter",
+      "description": "Regardless of background, we value the code and the person behind it. No hate, only growth."
+    },
+    "purePassion": {
+      "title": "Pure Passion",
+      "description": "We are willing to share what we create with you without prerequisites or expectations of anything in return."
+    }
+  },
+  "projects": {
+    "title": "Core Repositories",
+    "subtitle": "A glimpse into our sanctuary's digital output.",
+    "viewAll": "View all projects",
+    "items": {
+      "qtFluentWidgets": {
+        "name": "Qt-Fluent-Widgets",
+        "desc": "A fluent design component library for Qt/PySide6."
+      },
+      "pysideFluentWidgetsPro": {
+        "name": "PySide6-Fluent-Widgets-Pro",
+        "desc": "A fluent design component library for PySide6."
+      },
+      "kekkaiWorkshop": {
+        "name": "Kekkai Workshop",
+        "desc": "Video localization assistant with project management, subtitle extraction, video downloading, AI translation, and video encoding."
+      },
+      "neoBotFramework": {
+        "name": "NEO-Bot-Framework",
+        "desc": "A modern, high-performance bot framework."
+      }
+    }
+  },
+  "footer": {
+    "quote": "\"Connect the world, connect every person who believes in freedom and goodwill.\"",
+    "github": "Github",
+    "manifesto": "Manifesto",
+    "copyright": "🄯 {year} Fairy Oracle Sanctuary"
+  }
+}
