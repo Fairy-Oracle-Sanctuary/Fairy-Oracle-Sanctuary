@@ -561,21 +561,6 @@ img {
   letter-spacing: 0.05em;
 }
 
-.external-icon {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  width: 20px;
-  height: 20px;
-  color: var(--accent);
-  opacity: 0;
-  transition: opacity 0.2s;
-}
-
-.project-card:hover .external-icon {
-  opacity: 1;
-}
-
 /* Footer */
 .footer {
   padding: 5rem 1rem;
