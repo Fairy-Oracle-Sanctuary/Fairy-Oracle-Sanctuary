@@ -1,8 +1,16 @@
-# Fairy Oracle Sanctuary | 天机阁
+<p align="center">
+  <img src="public\images\logo_1080P.png" alt="logo" width="200"/>
+</p>
 
-[English](./README.md)
+<h1 align="center">
+  Fairy Oracle Sanctuary | 天机阁
+</h1>
 
-**天机阁** 官方网站 - 一个以自由软件精神为内核、以开源协作为方式的开发者团体。
+> 天机阁(Fairy Oracle Sanctuary) 官方网站
+
+<p align="center">
+<a href="README_en.md">English</a> | <a href="README.md">简体中文</a></a> 
+</p>
 
 🌐 **在线访问**: [https://fairy-oracle-sanctuary.github.io/Fairy-Oracle-Sanctuary/](https://fairy-oracle-sanctuary.github.io/Fairy-Oracle-Sanctuary/)
 

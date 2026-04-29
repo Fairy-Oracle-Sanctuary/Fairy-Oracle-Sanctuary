@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import "./globals.css";
 
 const isProd = process.env.NODE_ENV === 'production';
 const basePath = isProd ? '/Fairy-Oracle-Sanctuary' : '';
