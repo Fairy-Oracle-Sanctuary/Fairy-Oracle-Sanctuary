@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fairy Oracle Sanctuary | 天机阁</title>
+  <meta name="description" content="A developer collective with the spirit of free software at its core and open-source collaboration as its method.">
+  <link rel="icon" type="image/png" sizes="128x128" href="images/icon_128X128.png">
+  <link rel="shortcut icon" type="image/png" href="images/icon_128X128.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="nav-container">
+        <div class="nav-brand">
+          <div class="nav-logo">
+            <img src="images/icon_128X128.png" alt="FOS Logo">
+          </div>
+          <span class="nav-title">Fairy Oracle Sanctuary</span></span>
+        </div>
+        <div class="nav-actions">
+          <div class="language-switcher">
+            <button class="lang-btn" id="langBtn">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+              </svg>
+              <span id="currentLang">English</span>
+            </button>
+            <div class="lang-dropdown" id="langDropdown">
+              <button class="lang-option active" data-lang="en">English</button>
+              <button class="lang-option" data-lang="zh">Chinese</button>
+            </div>
+          </div>
+          <a href="https://github.com/Fairy-Oracle-Sanctuary" target="_blank" class="nav-link" aria-label="GitHub">
+            <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-content">
+        <h1 class="hero-title" data-i18n="hero.title">
+          Connect The World with <span class="accent underline">Goodwill</span>
+        </h1>
+        <p class="hero-description" data-i18n="hero.description">
+          天机阁 (Fairy Oracle Sanctuary) is a developer collective with the spirit of free software at its core and open-source collaboration as its method.
+        </p>
+        <div class="hero-actions">
+          <a href="https://github.com/Fairy-Oracle-Sanctuary" target="_blank" class="btn btn-primary">
+            <span data-i18n="hero.exploreButton">Explore Repositories</span>
+            <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+            </svg>
+          </a>
+          <a href="http://fosdocs.k2cro4.top/" target="_blank" class="btn btn-secondary">
+            <span data-i18n="hero.manifestoButton">Our Manifesto</span>
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+              <polyline points="15 3 21 3 21 9"/>
+              <line x1="10" y1="14" x2="21" y2="3"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="values">
+      <div class="values-grid">
+        <div class="value-card">
+          <div class="value-icon blue">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="16 18 22 12 16 6"/>
+              <polyline points="8 6 2 12 8 18"/>
+            </svg>
+          </div>
+          <h3 class="value-title" data-i18n="values.codeFree.title">Code is Free</h3>
+          <p class="value-description" data-i18n="values.codeFree.description">We prefer Copyleft licenses such as GPL or AGPL to ensure that software grants freedom to users rather than depriving them of it.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon red">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+            </svg>
+          </div>
+          <h3 class="value-title" data-i18n="values.peopleMatter.title">People Matter</h3>
+          <p class="value-description" data-i18n="values.peopleMatter.description">Regardless of background, we value the code and the person behind it. No hate, only growth.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon purple">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="4 17 10 11 4 5"/>
+              <line x1="12" y1="19" x2="20" y2="19"/>
+            </svg>
+          </div>
+          <h3 class="value-title" data-i18n="values.purePassion.title">Pure Passion</h3>
+          <p class="value-description" data-i18n="values.purePassion.description">We are willing to share what we create with you without prerequisites or expectations of anything in return.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects">
+      <div class="projects-header">
+        <div>
+          <h2 class="section-title" data-i18n="projects.title">Core Repositories</h2>
+          <p class="section-subtitle" data-i18n="projects.subtitle">A glimpse into our sanctuary's digital output.</p>
+        </div>
+        <a href="https://github.com/orgs/Fairy-Oracle-Sanctuary/repositories" target="_blank" class="view-all-link">
+          <span data-i18n="projects.viewAll">View all projects</span>
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+            <polyline points="15 3 21 3 21 9"/>
+            <line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+        </a>
+      </div>
+
+      <div class="projects-grid">
+        <!-- Qt-Fluent-Widgets -->
+        <a href="https://github.com/Fairy-Oracle-Sanctuary/Qt-Fluent-Widgets" target="_blank" class="project-card">
+          <div class="project-content">
+            <div class="project-header">
+              <h3 class="project-title" data-i18n="projects.items.qtFluentWidgets.name">Qt-Fluent-Widgets</h3>
+              <svg class="github-icon" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+              </svg>
+            </div>
+            <p class="project-description" data-i18n="projects.items.qtFluentWidgets.desc">A fluent design component library for Qt/PySide6.</p>
+            <div class="project-tags">
+              <span class="tag">C++</span>
+              <span class="tag">Qt</span>
+              <span class="tag">UI</span>
+            </div>
+          </div>
+          <svg class="external-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+            <polyline points="15 3 21 3 21 9"/>
+            <line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+        </a>
+
+        <!-- PySide6-Fluent-Widgets-Pro -->
+        <a href="https://github.com/Fairy-Oracle-Sanctuary/PySide6-Fluent-Widgets-Pro" target="_blank" class="project-card">
+          <div class="project-content">
+            <div class="project-header">
+              <h3 class="project-title" data-i18n="projects.items.pysideFluentWidgetsPro.name">PySide6-Fluent-Widgets-Pro</h3>
+              <svg class="github-icon" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+              </svg>
+            </div>
+            <p class="project-description" data-i18n="projects.items.pysideFluentWidgetsPro.desc">A fluent design component library for PySide6.</p>
+            <div class="project-tags">
+              <span class="tag">Python</span>
+              <span class="tag">PySide6</span>
+              <span class="tag">UI</span>
+            </div>
+          </div>
+          <svg class="external-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+            <polyline points="15 3 21 3 21 9"/>
+            <line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+        </a>
+
+        <!-- Kekkai Workshop -->
+        <a href="https://github.com/Fairy-Oracle-Sanctuary/Touhou-translate" target="_blank" class="project-card">
+          <div class="project-content">
+            <div class="project-header">
+              <h3 class="project-title" data-i18n="projects.items.kekkaiWorkshop.name">Kekkai Workshop</h3>
+              <svg class="github-icon" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+              </svg>
+            </div>
+            <p class="project-description" data-i18n="projects.items.kekkaiWorkshop.desc">Video localization assistant with project management, subtitle extraction, video downloading, AI translation, and video encoding.</p>
+            <div class="project-tags">
+              <span class="tag">Video</span>
+              <span class="tag">Localization</span>
+              <span class="tag">AI</span>
+              <span class="tag">Automation</span>
+            </div>
+          </div>
+          <svg class="external-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+            <polyline points="15 3 21 3 21 9"/>
+            <line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+        </a>
+
+        <!-- NEO-Bot-Framework -->
+        <a href="https://github.com/Fairy-Oracle-Sanctuary/NEO-Bot-Framework" target="_blank" class="project-card">
+          <div class="project-content">
+            <div class="project-header">
+              <h3 class="project-title" data-i18n="projects.items.neoBotFramework.name">NEO-Bot-Framework</h3>
+              <svg class="github-icon" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+              </svg>
+            </div>
+            <p class="project-description" data-i18n="projects.items.neoBotFramework.desc">A modern, high-performance bot framework.</p>
+            <div class="project-tags">
+              <span class="tag">Framework</span>
+              <span class="tag">Automation</span>
+              <span class="tag">TypeScript</span>
+            </div>
+          </div>
+          <svg class="external-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+            <polyline points="15 3 21 3 21 9"/>
+            <line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <img src="images/icon_128X128.png" alt="FOS Logo">
+        </div>
+        <h2 class="footer-title">Fairy Oracle Sanctuary</h2>
+        <p class="footer-quote" data-i18n="footer.quote">"Connect the world, connect every person who believes in freedom and goodwill."</p>
+        <div class="footer-links">
+          <a href="https://github.com/Fairy-Oracle-Sanctuary" target="_blank" data-i18n="footer.github">Github</a>
+          <a href="http://fosdocs.k2cro4.top/" target="_blank" data-i18n="footer.manifesto">Manifesto</a>
+        </div>
+        <p class="footer-copyright" id="copyright"></p>
+      </div>
+    </footer>
+  </main>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
