@@ -1,0 +1,54 @@
+{
+  "nav": {
+    "github": "GitHub"
+  },
+  "hero": {
+    "title": "Connect The World with <goodwill>Goodwill</goodwill>",
+    "description": "天机阁 (Fairy Oracle Sanctuary) 是一个以自由软件精神为内核、以开源协作为方式的开发者团体。",
+    "exploreButton": "探索仓库",
+    "manifestoButton": "阅读简章"
+  },
+  "values": {
+    "codeFree": {
+      "title": "代码自由",
+      "description": "我们倾向于使用 GPL 或 AGPL 等 Copyleft 许可证，确保软件赋予用户自由，而非剥夺自由。"
+    },
+    "peopleMatter": {
+      "title": "以人为本",
+      "description": "无论贡献者是新手还是老手、来自哪个国家、说什么语言——在代码面前，我们只认代码本身。"
+    },
+    "purePassion": {
+      "title": "纯粹热爱",
+      "description": "我们愿意把自己创造的东西分享给你，不设前提，不求回报。"
+    }
+  },
+  "projects": {
+    "title": "核心仓库",
+    "subtitle": "一窥我们的数字产出。",
+    "viewAll": "查看全部项目",
+    "items": {
+      "qtFluentWidgets": {
+        "name": "Qt-Fluent-Widgets",
+        "desc": "适用于 Qt 的 Fluent Design 组件库。"
+      },
+      "pysideFluentWidgetsPro": {
+        "name": "PySide6-Fluent-Widgets-Pro",
+        "desc": "适用于 PySide6 的 Fluent Design 组件库。"
+      },
+      "kekkaiWorkshop": {
+        "name": "Kekkai Workshop",
+        "desc": "视频汉化辅助工具，支持项目管理、视频下载、字幕提取、AI 翻译、视频压制。"
+      },
+      "neoBotFramework": {
+        "name": "NEO-Bot-Framework",
+        "desc": "现代化、高性能的机器人框架。"
+      }
+    }
+  },
+  "footer": {
+    "quote": "\"连接世界，连接每一个相信自由与善意的人。\"",
+    "github": "Github",
+    "manifesto": "简章",
+    "copyright": "🄯 {year} Fairy Oracle Sanctuary"
+  }
+}
