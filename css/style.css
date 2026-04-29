@@ -321,11 +321,7 @@ img {
   }
 
   .hero-logo {
-    order: -1;
-  }
-
-  .hero-logo img {
-    max-width: 280px;
+    display: none;
   }
 
   .hero-content {
