@@ -222,8 +222,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   // Render projects
   renderProjects();
-  // Fetch and render contributors
-  fetchContributors();
+  // Render contributors
+  renderContributors();
   // Particle background
   initParticles();
 });
@@ -261,48 +261,33 @@ function initParticles() {
   }
 }
 
-async function fetchContributors() {
+// Contributor data - add new contributors here
+const contributorsData = [
+  { login: "baby-2016" },
+  { login: "K2cr2O1" },
+  { login: "Allah-Ethan" },
+  { login: "YaozhengyuSBZWX" },
+  { login: "HIllya51" },
+  { login: "zhaojinhui114514-coder" },
+  { login: "EillesWan" },
+  { login: "deldelayredo" },
+  { login: "MetallicAllex" },
+  { login: "TaiBai52007" },
+  { login: "LiFyrid" },
+  { login: "awedwd" },
+  { login: "Q1ngHan" },
+];
+
+function renderContributors() {
   const grid = document.getElementById('contributors-grid');
   if (!grid) return;
 
-  try {
-    const contributorsMap = new Map();
-    
-    // Fetch all repos from the org
-    const reposRes = await fetch('https://api.github.com/orgs/Fairy-Oracle-Sanctuary/repos?per_page=100&type=public');
-    if (!reposRes.ok) return;
-    const repos = await reposRes.json();
-
-    // Fetch contributors for each repo
-    const contribPromises = repos.map(async (repo) => {
-      try {
-        const res = await fetch(`https://api.github.com/repos/Fairy-Oracle-Sanctuary/${repo.name}/contributors?per_page=50`);
-        if (!res.ok) return;
-        const contribs = await res.json();
-        contribs.forEach(c => {
-          if (!contributorsMap.has(c.login)) {
-            contributorsMap.set(c.login, { login: c.login, avatar_url: c.avatar_url, html_url: c.html_url, contributions: c.contributions });
-          } else {
-            contributorsMap.get(c.login).contributions += c.contributions;
-          }
-        });
-      } catch (e) { /* skip failed repo */ }
-    });
-
-    await Promise.all(contribPromises);
-
-    // Sort by contributions descending
-    const contributors = [...contributorsMap.values()].sort((a, b) => b.contributions - a.contributions);
-
-    grid.innerHTML = contributors.map(c => `
-      <a href="${c.html_url}" target="_blank" class="contributor-avatar" title="${c.login}">
-        <img src="${c.avatar_url}" alt="${c.login}" loading="lazy">
-        <span class="contributor-name">${c.login}</span>
-      </a>
-    `).join('');
-  } catch (e) {
-    // Silently fail
-  }
+  grid.innerHTML = contributorsData.map(c => `
+    <a href="https://github.com/${c.login}" target="_blank" class="contributor-avatar" title="${c.login}">
+      <img src="https://avatars.githubusercontent.com/${c.login}" alt="${c.login}" loading="lazy">
+      <span class="contributor-name">${c.login}</span>
+    </a>
+  `).join('');
 }
 
 // Scroll-triggered animations for project cards
