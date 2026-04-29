@@ -9,9 +9,6 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 
-// Base path for GitHub Pages deployment (production only)
-const basePath = process.env.NODE_ENV === 'production' ? '/Fairy-Oracle-Sanctuary' : '';
-
 const GithubIcon = ({ className }: { className?: string }) => (
   <svg 
     role="img" 
@@ -100,7 +97,7 @@ export default function Home() {
           <div className="flex items-center gap-3">
             <div className="relative w-10 h-10 rounded-xl border border-gray-100 shadow-sm bg-white flex-shrink-0">
               <Image 
-                src={`${basePath}/images/icon_128X128.png`} 
+                src="/images/icon_128X128.png" 
                 alt="FOS Logo" 
                 fill
                 className="object-contain p-0.5"
@@ -143,7 +140,7 @@ export default function Home() {
               <GithubIcon className="w-5 h-5 group-hover:rotate-12 transition-transform" />
             </Link>
             <Link 
-              href="https://github.com/Fairy-Oracle-Sanctuary/fos-docs/blob/main/fos-docs.txt" 
+              href="http://fosdocs.k2cro4.top/" 
               target="_blank"
               className="px-8 py-4 border-2 border-primary rounded-full font-bold hover:bg-primary/5 hover:shadow-md transition-all flex items-center gap-2 cursor-pointer"
             >
@@ -195,20 +192,16 @@ export default function Home() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {projects.map((project, index) => (
-            <motion.div
+            <Link
               key={project.key}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
-              viewport={{ once: true }}
-              className="group p-8 bg-white border border-gray-200 rounded-3xl hover:border-accent hover:shadow-2xl hover:shadow-accent/5 transition-all cursor-pointer relative overflow-hidden"
+              href={project.link}
+              target="_blank"
+              className="group p-8 bg-white border border-gray-200 rounded-3xl hover:border-accent hover:shadow-2xl hover:shadow-accent/5 transition-all cursor-pointer relative overflow-hidden block"
             >
               <div className="relative z-10">
                 <div className="flex justify-between items-start mb-6">
                   <h3 className="font-heading text-2xl font-bold group-hover:text-accent transition-colors">{t(`projects.items.${project.key}.name`)}</h3>
-                  <Link href={project.link} target="_blank">
-                    <GithubIcon className="w-6 h-6 text-secondary group-hover:text-accent transition-colors" />
-                  </Link>
+                  <GithubIcon className="w-6 h-6 text-secondary group-hover:text-accent transition-colors" />
                 </div>
                 <p className="text-secondary mb-8 leading-relaxed">{t(`projects.items.${project.key}.desc`)}</p>
                 <div className="flex flex-wrap gap-2">
@@ -220,7 +213,7 @@ export default function Home() {
               <div className="absolute top-0 right-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity">
                 <ExternalLink className="w-5 h-5 text-accent" />
               </div>
-            </motion.div>
+            </Link>
           ))}
         </div>
       </section>
@@ -230,7 +223,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="relative w-16 h-16 mx-auto mb-8 rounded-2xl border border-gray-100 shadow-md bg-white">
             <Image 
-              src={`${basePath}/images/icon_128X128.png`} 
+              src="/images/icon_128X128.png" 
               alt="FOS Logo" 
               fill
               className="object-contain p-1"
@@ -242,7 +235,7 @@ export default function Home() {
           </p>
           <div className="flex justify-center gap-8 mb-12">
             <Link href="https://github.com/Fairy-Oracle-Sanctuary" target="_blank" className="text-secondary hover:text-primary transition-colors cursor-pointer">{t('footer.github')}</Link>
-            <Link href="https://github.com/Fairy-Oracle-Sanctuary/fos-docs/blob/main/fos-docs.txt" target="_blank" className="text-secondary hover:text-primary transition-colors cursor-pointer">{t('footer.manifesto')}</Link>
+            <Link href="http://fosdocs.k2cro4.top/" target="_blank" className="text-secondary hover:text-primary transition-colors cursor-pointer">{t('footer.manifesto')}</Link>
           </div>
           <p className="text-sm text-gray-400">{t('footer.copyright', { year: currentYear })}</p>
         </div>

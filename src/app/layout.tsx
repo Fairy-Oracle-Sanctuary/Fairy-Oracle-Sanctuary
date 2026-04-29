@@ -1,14 +1,11 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
-const isProd = process.env.NODE_ENV === 'production';
-const basePath = isProd ? '/Fairy-Oracle-Sanctuary' : '';
-
 export const metadata: Metadata = {
   title: "Fairy Oracle Sanctuary | 天机阁",
   description: "A developer collective with the spirit of free software at its core and open-source collaboration as its method.",
   icons: {
-    icon: `${basePath}/images/icon_128X128.png`,
+    icon: "/images/icon_128X128.png",
   },
 };
 
