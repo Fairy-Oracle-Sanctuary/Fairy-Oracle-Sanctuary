@@ -101,6 +101,8 @@ const messages = {
     "projects.items.BB-CVT-FMBE.desc": "Minecraft Bedrock Edition model converter.",
     "contributors.title": "Contributors",
     "contributors.subtitle": "The people who make it all possible.",
+    "contributors.supportersTitle": "Friends & Supporters",
+    "contributors.supportersSubtitle": "Those who share our spirit, even without code.",
     "footer.quote": '"Connect the world, connect every person who believes in freedom and goodwill."',
     "footer.github": "Github",
     "footer.manifesto": "Manifesto",
@@ -133,7 +135,9 @@ const messages = {
     "projects.items.BB-CVT-FMBE.name": "BB-CVT-FMBE",
     "projects.items.BB-CVT-FMBE.desc": "Minecraft 基岩版模型转换器。",
     "contributors.title": "贡献者",
-    "contributors.subtitle": "让一切成为可能的人们。",
+    "contributors.subtitle": "让一切成为可能的人们",
+    "contributors.supportersTitle": "朋友与支持者",
+    "contributors.supportersSubtitle": "即便没有代码贡献，也与我们精神同在",
     "footer.quote": '"连接世界，连接每一个相信自由与善意的人。"',
     "footer.github": "Github",
     "footer.manifesto": "简章",
@@ -224,6 +228,8 @@ document.addEventListener('DOMContentLoaded', () => {
   renderProjects();
   // Render contributors
   renderContributors();
+  // Render supporters
+  renderSupporters();
   // Particle background
   initParticles();
 });
@@ -283,10 +289,30 @@ function renderContributors() {
   if (!grid) return;
 
   grid.innerHTML = contributorsData.map(c => `
-    <a href="https://github.com/${c.login}" target="_blank" class="contributor-avatar" title="${c.login}">
+    <a href="https://github.com/${c.login}" target="_blank" class="contributor-avatar" data-tooltip="${c.login}">
       <img src="https://avatars.githubusercontent.com/${c.login}" alt="${c.login}" loading="lazy">
-      <span class="contributor-name">${c.login}</span>
     </a>
+  `).join('');
+}
+
+// Supporters data - Discord friends who share our spirit
+const supportersData = [
+  { name: "AxisesEMG(Chinese)", image: "images/contributors/axisesemg.jpg" },
+  { name: "Saloth-Sar(Chinese)", image: "images/contributors/salothsar.jpg" },
+  { name: "jeanmajid(British)", image: "images/contributors/jeanmajid.webp" },
+  { name: "Base(Japan)", image: "images/contributors/base.webp" },
+  { name: "Vi(Vietnam)", image: "images/contributors/vi.webp" },
+  { name: "pudding(Philippine)", image: "images/contributors/pudding.webp" },
+];
+
+function renderSupporters() {
+  const grid = document.getElementById('supporters-grid');
+  if (!grid) return;
+
+  grid.innerHTML = supportersData.map(s => `
+    <div class="contributor-avatar supporter" data-tooltip="${s.name}">
+      <img src="${s.image}" alt="${s.name}" loading="lazy">
+    </div>
   `).join('');
 }
 
