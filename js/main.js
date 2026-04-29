@@ -280,8 +280,8 @@ const contributorsData = [
   { login: "MetallicAllex" },
   { login: "TaiBai52007" },
   { login: "LiFyrid" },
-  { login: "awedwd" },
-  { login: "Q1ngHan" },
+  { login: "Happy2018New" },
+  { login: "superme1515" },
 ];
 
 function renderContributors() {
@@ -298,7 +298,11 @@ function renderContributors() {
 // Supporters data - Discord friends who share our spirit
 const supportersData = [
   { name: "AxisesEMG(Chinese)", image: "images/contributors/axisesemg.jpg" },
-  { name: "Saloth-Sar(Chinese)", image: "images/contributors/salothsar.jpg" },
+  { name: "Saloth Sar(Chinese)", image: "images/contributors/salothsar.jpg" },
+  { name: "Pea Smoothie(Chinese)", image: "images/contributors/peasmoothie.jpg" },
+  { name: "QingQingHan(Chinese)", image: "images/contributors/qqh.jpg" },
+  { name: "awedwd(Chinese)", image: "images/contributors/awedwd.jpg" },
+  { name: "AI(Chinese)", image: "images/contributors/ai.png" },
   { name: "jeanmajid(British)", image: "images/contributors/jeanmajid.webp" },
   { name: "Base(Japan)", image: "images/contributors/base.webp" },
   { name: "Vi(Vietnam)", image: "images/contributors/vi.webp" },
