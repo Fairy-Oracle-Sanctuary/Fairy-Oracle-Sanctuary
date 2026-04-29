@@ -9,7 +9,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 
-// Base path for GitHub Pages deployment
+// Base path for GitHub Pages deployment (production only)
 const basePath = process.env.NODE_ENV === 'production' ? '/Fairy-Oracle-Sanctuary' : '';
 
 const GithubIcon = ({ className }: { className?: string }) => (
@@ -98,12 +98,12 @@ export default function Home() {
       <nav className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="relative w-10 h-10 overflow-hidden rounded-xl border border-gray-100 shadow-sm">
+            <div className="relative w-10 h-10 rounded-xl border border-gray-100 shadow-sm bg-white flex-shrink-0">
               <Image 
                 src={`${basePath}/images/icon_128X128.png`} 
                 alt="FOS Logo" 
                 fill
-                className="object-cover"
+                className="object-contain p-0.5"
               />
             </div>
             <span className="font-heading font-bold text-xl tracking-tight">Fairy Oracle <span className="text-accent">Sanctuary</span></span>
@@ -228,12 +228,12 @@ export default function Home() {
       {/* Footer */}
       <footer className="py-20 border-t border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="relative w-16 h-16 mx-auto mb-8 rounded-2xl overflow-hidden border border-gray-100 shadow-md">
+          <div className="relative w-16 h-16 mx-auto mb-8 rounded-2xl border border-gray-100 shadow-md bg-white">
             <Image 
               src={`${basePath}/images/icon_128X128.png`} 
               alt="FOS Logo" 
               fill
-              className="object-cover"
+              className="object-contain p-1"
             />
           </div>
           <h2 className="font-heading text-3xl font-bold mb-6">Fairy Oracle Sanctuary</h2>

@@ -2,15 +2,16 @@ import createNextIntlPlugin from 'next-intl/plugin';
 
 const withNextIntl = createNextIntlPlugin('./src/i18n.ts');
 
+const isProd = process.env.NODE_ENV === 'production';
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
+  output: isProd ? 'export' : undefined,
   images: {
     unoptimized: true,
   },
-  // For GitHub Pages: use repo name as base path
-  // If using custom domain or user.github.io repo, set to ''
-  basePath: '/Fairy-Oracle-Sanctuary',
+  // Only use basePath in production for GitHub Pages
+  basePath: isProd ? '/Fairy-Oracle-Sanctuary' : '',
 };
 
 export default withNextIntl(nextConfig);

@@ -1,21 +1,24 @@
-import { defaultLocale, Locale, locales } from '@/i18n.config';
+"use client";
 
-function getBrowserLocale(): Locale {
-  if (typeof window === 'undefined') return defaultLocale;
-  const browserLang = navigator.language.split('-')[0];
-  return locales.includes(browserLang as Locale) ? (browserLang as Locale) : defaultLocale;
-}
+import { defaultLocale, Locale, locales } from '@/i18n.config';
+import { useEffect } from 'react';
 
 export default function RootPage() {
-  const targetLocale = typeof window === 'undefined' ? defaultLocale : getBrowserLocale();
+  useEffect(() => {
+    const browserLang = navigator.language.split('-')[0];
+    const targetLocale = locales.includes(browserLang as Locale) ? (browserLang as Locale) : defaultLocale;
+    const basePath = process.env.NODE_ENV === 'production' ? '/Fairy-Oracle-Sanctuary' : '';
+    window.location.href = `${basePath}/${targetLocale}`;
+  }, []);
+
+  const basePath = process.env.NODE_ENV === 'production' ? '/Fairy-Oracle-Sanctuary' : '';
+
   return (
-    <html lang="en">
-      <head>
-        <meta httpEquiv="refresh" content={`0;url=/Fairy-Oracle-Sanctuary/${targetLocale}`} />
-      </head>
-      <body>
-        <p>Redirecting to <a href={`/Fairy-Oracle-Sanctuary/${targetLocale}`}>/{targetLocale}</a>...</p>
-      </body>
-    </html>
+    <div style={{ textAlign: 'center', padding: '2rem' }}>
+      <p>Redirecting... <a href={`${basePath}/${defaultLocale}`}>Click here</a> if not redirected.</p>
+      <noscript>
+        <meta httpEquiv="refresh" content={`0;url=${basePath}/${defaultLocale}`} />
+      </noscript>
+    </div>
   );
 }
