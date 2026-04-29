@@ -9,7 +9,7 @@
 > 天机阁(Fairy Oracle Sanctuary) 官方网站
 
 <p align="center">
-<a href="README_en.md">English</a> | <a href="README.md">简体中文</a></a> 
+<a href="README.md">English</a> | <a href="README.zh.md">简体中文</a></a> 
 </p>
 
 🌐 **在线访问**: [https://fairy-oracle-sanctuary.github.io/Fairy-Oracle-Sanctuary/](https://fairy-oracle-sanctuary.github.io/Fairy-Oracle-Sanctuary/)
