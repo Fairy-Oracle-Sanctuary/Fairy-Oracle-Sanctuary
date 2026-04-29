@@ -135,7 +135,42 @@ document.addEventListener('DOMContentLoaded', () => {
       updateTranslations();
     }
   }
+  // Particle background
+  initParticles();
 });
+
+function initParticles() {
+  const container = document.getElementById('hero-particles');
+  if (!container) return;
+
+  const particleCount = 20;
+  
+  for (let i = 0; i < particleCount; i++) {
+    const particle = document.createElement('div');
+    particle.className = 'particle';
+    
+    // Random size between 2px and 6px
+    const size = Math.random() * 4 + 2;
+    particle.style.width = `${size}px`;
+    particle.style.height = `${size}px`;
+    
+    // Random horizontal position
+    particle.style.left = `${Math.random() * 100}%`;
+    
+    // Random duration between 15s and 25s
+    const duration = Math.random() * 10 + 15;
+    particle.style.setProperty('--duration', `${duration}s`);
+    
+    // Random horizontal drift
+    const drift = (Math.random() - 0.5) * 200;
+    particle.style.setProperty('--drift', `${drift}px`);
+    
+    // Random delay so they don't all start at once
+    particle.style.animationDelay = `${Math.random() * 20}s`;
+    
+    container.appendChild(particle);
+  }
+}
 
 // Scroll-triggered animations for project cards
 const observer = new IntersectionObserver((entries) => {
