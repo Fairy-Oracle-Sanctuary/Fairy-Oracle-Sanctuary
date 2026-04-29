@@ -3,31 +3,37 @@ const projectsData = [
   {
     id: 'qtFluentWidgets',
     url: 'https://github.com/Fairy-Oracle-Sanctuary/Qt-Fluent-Widgets',
+    image: 'https://res.cloudinary.com/do6rggmy6/image/upload/v1777485902/qtFluentWidgets_qeb25t.png',
     tags: ['C++', 'Qt', 'UI']
   },
   {
     id: 'pysideFluentWidgetsPro',
     url: 'https://github.com/Fairy-Oracle-Sanctuary/PySide6-Fluent-Widgets-Pro',
+    image: 'https://res.cloudinary.com/do6rggmy6/image/upload/v1777485867/pysideFluentWidgetsPro_eido2b.png',
     tags: ['Python', 'PySide6', 'UI']
   },
   {
     id: 'kekkaiWorkshop',
     url: 'https://github.com/Fairy-Oracle-Sanctuary/Touhou-translate',
+    image: 'https://res.cloudinary.com/do6rggmy6/image/upload/v1777485917/kekkaiWorkshop_gbpg4k.png',
     tags: ['Video', 'Localization', 'AI', 'Automation']
   },
   {
     id: 'neoBotFramework',
     url: 'https://github.com/Fairy-Oracle-Sanctuary/NEO-Bot-Framework',
+    image: 'https://res.cloudinary.com/do6rggmy6/image/upload/v1777485866/neoBotFramework_lqa1v4.jpg',
     tags: ['Framework', 'Automation', 'TypeScript']
   },
   {
     id: "EX-FMBE-simulator",
     url: "https://github.com/Fairy-Oracle-Sanctuary/EX-FMBE-simulator",
+    image: 'https://res.cloudinary.com/do6rggmy6/image/upload/v1777485867/EX-FMBE-simulator_p3djr7.png',
     tags: ["simulator", "Minecraft", "Command"]
   },
   {
     id: "BB-CVT-FMBE",
     url: "https://github.com/Fairy-Oracle-Sanctuary/BB-CVT-FMBE",
+    image: 'https://res.cloudinary.com/do6rggmy6/image/upload/v1777486058/BB-CVT-FMBE_xlgkee.png',
     tags: ["simulator", "Minecraft", "Command"]
   }
 ];
@@ -42,16 +48,17 @@ function renderProjects() {
   const grid = document.getElementById('projects-grid');
   if (!grid) return;
 
-  grid.innerHTML = projectsData.map(project => `
-    <a href="${project.url}" target="_blank" class="project-card">
-      <div class="project-image-wrapper">
-        <img class="project-image" src="images/${project.id}.png" alt="${project.id}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="project-image-fallback" style="display: none;">
+  grid.innerHTML = projectsData.map(project => {
+    const imageHtml = project.image
+      ? `<div class="project-image-wrapper"><img class="project-image" src="${project.image}" alt="${project.id}"></div>`
+      : `<div class="project-image-wrapper"><div class="project-image-fallback" style="display: flex;">
           <svg viewBox="0 0 24 24" fill="currentColor">
             <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
           </svg>
-        </div>
-      </div>
+        </div></div>`;
+    return `
+    <a href="${project.url}" target="_blank" class="project-card">
+      ${imageHtml}
       <div class="project-content">
         <div class="project-header">
           <h3 class="project-title" data-i18n="projects.items.${project.id}.name">${messages[currentLocale][`projects.items.${project.id}.name`] || project.id}</h3>
@@ -63,7 +70,8 @@ function renderProjects() {
         </div>
       </div>
     </a>
-  `).join('');
+  `;
+  }).join('');
 
   // Re-observe new cards for animation
   document.querySelectorAll('.project-card').forEach(card => {

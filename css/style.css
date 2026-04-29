@@ -215,7 +215,7 @@ img {
   display: flex;
   align-items: center;
   padding-top: 4rem;
-  background-image: url('../images/hero_image.png');
+  background-image: url('https://res.cloudinary.com/do6rggmy6/image/upload/v1777485867/hero_image_krkwva.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
