@@ -1,3 +1,76 @@
+// Project data - add new projects here
+const projectsData = [
+  {
+    id: 'qtFluentWidgets',
+    url: 'https://github.com/Fairy-Oracle-Sanctuary/Qt-Fluent-Widgets',
+    tags: ['C++', 'Qt', 'UI']
+  },
+  {
+    id: 'pysideFluentWidgetsPro',
+    url: 'https://github.com/Fairy-Oracle-Sanctuary/PySide6-Fluent-Widgets-Pro',
+    tags: ['Python', 'PySide6', 'UI']
+  },
+  {
+    id: 'kekkaiWorkshop',
+    url: 'https://github.com/Fairy-Oracle-Sanctuary/Touhou-translate',
+    tags: ['Video', 'Localization', 'AI', 'Automation']
+  },
+  {
+    id: 'neoBotFramework',
+    url: 'https://github.com/Fairy-Oracle-Sanctuary/NEO-Bot-Framework',
+    tags: ['Framework', 'Automation', 'TypeScript']
+  },
+  {
+    id: "EX-FMBE-simulator",
+    url: "https://github.com/Fairy-Oracle-Sanctuary/EX-FMBE-simulator",
+    tags: ["simulator", "Minecraft", "Command"]
+  },
+  {
+    id: "BB-CVT-FMBE",
+    url: "https://github.com/Fairy-Oracle-Sanctuary/BB-CVT-FMBE",
+    tags: ["simulator", "Minecraft", "Command"]
+  }
+];
+
+// GitHub icon SVG
+const githubIconSVG = `<svg class="github-icon" viewBox="0 0 24 24" fill="currentColor">
+  <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+</svg>`;
+
+// Render projects
+function renderProjects() {
+  const grid = document.getElementById('projects-grid');
+  if (!grid) return;
+
+  grid.innerHTML = projectsData.map(project => `
+    <a href="${project.url}" target="_blank" class="project-card">
+      <div class="project-image-wrapper">
+        <img class="project-image" src="images/${project.id}.png" alt="${project.id}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="project-image-fallback" style="display: none;">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+          </svg>
+        </div>
+      </div>
+      <div class="project-content">
+        <div class="project-header">
+          <h3 class="project-title" data-i18n="projects.items.${project.id}.name">${messages[currentLocale][`projects.items.${project.id}.name`] || project.id}</h3>
+          ${githubIconSVG}
+        </div>
+        <p class="project-description" data-i18n="projects.items.${project.id}.desc">${messages[currentLocale][`projects.items.${project.id}.desc`] || ''}</p>
+        <div class="project-tags">
+          ${project.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+        </div>
+      </div>
+    </a>
+  `).join('');
+
+  // Re-observe new cards for animation
+  document.querySelectorAll('.project-card').forEach(card => {
+    observer.observe(card);
+  });
+}
+
 // Internationalization messages
 const messages = {
   en: {
@@ -22,6 +95,12 @@ const messages = {
     "projects.items.kekkaiWorkshop.desc": "Video localization assistant with project management, subtitle extraction, video downloading, AI translation, and video encoding.",
     "projects.items.neoBotFramework.name": "NEO-Bot-Framework",
     "projects.items.neoBotFramework.desc": "A modern, high-performance bot framework.",
+    "projects.items.EX-FMBE-simulator.name": "EX-FMBE-simulator",
+    "projects.items.EX-FMBE-simulator.desc": "Minecraft Bedrock Edition FMBE simulator.",
+    "projects.items.BB-CVT-FMBE.name": "BB-CVT-FMBE",
+    "projects.items.BB-CVT-FMBE.desc": "Minecraft Bedrock Edition model converter.",
+    "contributors.title": "Contributors",
+    "contributors.subtitle": "The people who make it all possible.",
     "footer.quote": '"Connect the world, connect every person who believes in freedom and goodwill."',
     "footer.github": "Github",
     "footer.manifesto": "Manifesto",
@@ -49,10 +128,16 @@ const messages = {
     "projects.items.kekkaiWorkshop.desc": "视频汉化辅助工具，支持项目管理、视频下载、字幕提取、AI 翻译、视频压制。",
     "projects.items.neoBotFramework.name": "NEO-Bot-Framework",
     "projects.items.neoBotFramework.desc": "现代化、高性能的机器人框架。",
+    "projects.items.EX-FMBE-simulator.name": "EX-FMBE-simulator",
+    "projects.items.EX-FMBE-simulator.desc": "Minecraft 基岩版FMBE模拟器。",
+    "projects.items.BB-CVT-FMBE.name": "BB-CVT-FMBE",
+    "projects.items.BB-CVT-FMBE.desc": "Minecraft 基岩版模型转换器。",
+    "contributors.title": "贡献者",
+    "contributors.subtitle": "让一切成为可能的人们。",
     "footer.quote": '"连接世界，连接每一个相信自由与善意的人。"',
     "footer.github": "Github",
     "footer.manifesto": "简章",
-    "footer.copyright": "🄯 {year} Fairy Oracle Sanctuary"
+    "footer.copyright": "© {year} 天机阁"
   }
 };
 
@@ -135,6 +220,10 @@ document.addEventListener('DOMContentLoaded', () => {
       updateTranslations();
     }
   }
+  // Render projects
+  renderProjects();
+  // Fetch and render contributors
+  fetchContributors();
   // Particle background
   initParticles();
 });
@@ -172,6 +261,50 @@ function initParticles() {
   }
 }
 
+async function fetchContributors() {
+  const grid = document.getElementById('contributors-grid');
+  if (!grid) return;
+
+  try {
+    const contributorsMap = new Map();
+    
+    // Fetch all repos from the org
+    const reposRes = await fetch('https://api.github.com/orgs/Fairy-Oracle-Sanctuary/repos?per_page=100&type=public');
+    if (!reposRes.ok) return;
+    const repos = await reposRes.json();
+
+    // Fetch contributors for each repo
+    const contribPromises = repos.map(async (repo) => {
+      try {
+        const res = await fetch(`https://api.github.com/repos/Fairy-Oracle-Sanctuary/${repo.name}/contributors?per_page=50`);
+        if (!res.ok) return;
+        const contribs = await res.json();
+        contribs.forEach(c => {
+          if (!contributorsMap.has(c.login)) {
+            contributorsMap.set(c.login, { login: c.login, avatar_url: c.avatar_url, html_url: c.html_url, contributions: c.contributions });
+          } else {
+            contributorsMap.get(c.login).contributions += c.contributions;
+          }
+        });
+      } catch (e) { /* skip failed repo */ }
+    });
+
+    await Promise.all(contribPromises);
+
+    // Sort by contributions descending
+    const contributors = [...contributorsMap.values()].sort((a, b) => b.contributions - a.contributions);
+
+    grid.innerHTML = contributors.map(c => `
+      <a href="${c.html_url}" target="_blank" class="contributor-avatar" title="${c.login}">
+        <img src="${c.avatar_url}" alt="${c.login}" loading="lazy">
+        <span class="contributor-name">${c.login}</span>
+      </a>
+    `).join('');
+  } catch (e) {
+    // Silently fail
+  }
+}
+
 // Scroll-triggered animations for project cards
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
@@ -182,14 +315,13 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.15 });
 
-document.querySelectorAll('.project-card').forEach(card => {
-  observer.observe(card);
-});
-
 // Update all translations
 function updateTranslations() {
   // Save locale preference
   localStorage.setItem('locale', currentLocale);
+
+  // Re-render projects with new language
+  renderProjects();
 
   // Update all elements with data-i18n attribute
   document.querySelectorAll('[data-i18n]').forEach(el => {
