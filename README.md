@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="images\logo_1080P.png" alt="logo" width="200"/>
+  <img src="https://res.cloudinary.com/do6rggmy6/image/upload/v1777526682/logo_1080P_fenwbe.png" alt="logo" width="200"/>
 </p>
 
 <h1 align="center">
