@@ -291,6 +291,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
           // Update current locale
           currentLocale = newLocale;
+          localStorage.setItem('locale', newLocale);
 
           // Update display
           currentLangSpan.textContent = languageNames[newLocale];
@@ -305,24 +306,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Detect browser language on first visit
   const savedLocale = localStorage.getItem('locale');
+  let detectedLocale = 'en';
+
   if (savedLocale && messages[savedLocale]) {
-    currentLocale = savedLocale;
-    currentLangSpan.textContent = languageNames[currentLocale];
-    langDropdown.querySelectorAll('.lang-option').forEach(opt => {
-      opt.classList.toggle('active', opt.dataset.lang === currentLocale);
-    });
-    updateTranslations();
+    detectedLocale = savedLocale;
   } else {
     const browserLang = navigator.language.split('-')[0];
     if (messages[browserLang]) {
-      currentLocale = browserLang;
-      currentLangSpan.textContent = languageNames[currentLocale];
-      langDropdown.querySelectorAll('.lang-option').forEach(opt => {
-        opt.classList.toggle('active', opt.dataset.lang === currentLocale);
-      });
-      updateTranslations();
+      detectedLocale = browserLang;
     }
   }
+
+  currentLocale = detectedLocale;
+  if (currentLangSpan) {
+    currentLangSpan.textContent = languageNames[currentLocale];
+  }
+  if (langDropdown) {
+    langDropdown.querySelectorAll('.lang-option').forEach(opt => {
+      opt.classList.toggle('active', opt.dataset.lang === currentLocale);
+    });
+  }
+  updateTranslations();
 
   // Theme toggle
   const themeToggle = document.getElementById('themeToggle');
