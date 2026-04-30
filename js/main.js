@@ -431,7 +431,7 @@ const contributorsData = [
   { login: "TaiBai52007" },
   { login: "LiFyrid" },
   { login: "Happy2018New" },
-  { login: "superme1515" },
+  { login: "EasonMDR" },
 ];
 
 function renderContributors() {
