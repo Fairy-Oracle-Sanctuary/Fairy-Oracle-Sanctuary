@@ -114,6 +114,8 @@ const messages = {
     "contributors.subtitle": "The people who make it all possible.",
     "contributors.supportersTitle": "Friends & Supporters",
     "contributors.supportersSubtitle": "Those who share our spirit, even without code.",
+    "contributors.thanksTitle": "Special Thanks",
+    "contributors.thanksSubtitle": "Organizations and communities that inspire and support us.",
     "footer.quote": '"Connect the world, connect every person who believes in freedom and goodwill."',
     "footer.github": "Github",
     "footer.manifesto": "Manifesto",
@@ -152,6 +154,8 @@ const messages = {
     "contributors.subtitle": "让一切成为可能的人们",
     "contributors.supportersTitle": "朋友与支持者",
     "contributors.supportersSubtitle": "即便没有代码贡献，也与我们精神同在",
+    "contributors.thanksTitle": "特别感谢",
+    "contributors.thanksSubtitle": "启发和支持我们的组织与社区",
     "footer.quote": '"连接世界，连接每一个相信自由与善意的人。"',
     "footer.github": "Github",
     "footer.manifesto": "简章",
@@ -190,6 +194,8 @@ const messages = {
     "contributors.subtitle": "すべてを可能にする人々。",
     "contributors.supportersTitle": "友人 ＆ サポーター",
     "contributors.supportersSubtitle": "コードがなくても私たちの精神を共有する人々。",
+    "contributors.thanksTitle": "スペシャルサンクス",
+    "contributors.thanksSubtitle": "私たちにインスピレーションとサポートを与えてくれる組織とコミュニティ。",
     "footer.quote": '“世界を繋ぎ、自由と善意を信じるすべての人を繋ぐ。”',
     "footer.github": "Github",
     "footer.manifesto": "マニフェスト",
@@ -228,6 +234,8 @@ const messages = {
     "contributors.subtitle": "이 모든 것을 가능하게 하는 사람들.",
     "contributors.supportersTitle": "친구 및 후원자",
     "contributors.supportersSubtitle": "코드 없이도 우리의 정신을 공유하는 사람들.",
+    "contributors.thanksTitle": "특별 감사",
+    "contributors.thanksSubtitle": "우리에게 영감과 지지를 주는 조직과 커뮤니티.",
     "footer.quote": '“세상을 연결하고, 자유와 선의를 믿는 모든 사람을 연결합니다.”',
     "footer.github": "Github",
     "footer.manifesto": "매니페스토",
@@ -354,6 +362,8 @@ document.addEventListener('DOMContentLoaded', () => {
   renderContributors();
   // Render supporters
   renderSupporters();
+  // Render thanks
+  renderThanks();
   // Particle background
   initParticles();
 
@@ -459,6 +469,41 @@ function renderSupporters() {
       <img src="${s.image}" alt="${s.name}" loading="lazy">
     </div>
   `).join('');
+}
+
+// Thanks data - organizations and communities we want to thank
+// type: 'github' = GitHub org (auto avatar + link), 'community' = local image, no link
+const thanksData = [
+  { type: "github", name: "YingLunTown & DreamLand Development Group", github: "YingLunTown-DreamLand" },
+  { type: "github", name: "Minecraft Muti-Media Organization", github: "TriM-Organization" },
+  { type: "github", name: "Command_Simulator", github: "missing244" },
+  { type: "community", name: "Bedrock Commands Community", image: "images/teams/bcc.webp" },
+  { type: "community", name: "コマンダーの集い", image: "images/teams/japancc.webp" },
+  { type: "community", name: "MCBE动画研究室", image: "images/teams/mcbea.png" },
+  { type: "community", name: "萌芽工作室", image: "images/teams/my.png" },
+  { type: "community", name: "海龟壳工作室", image: "images/teams/hgk.png" },
+  { type: "community", name: "幻想入的观测所", image: "images/teams/gcs.png" },
+];
+
+function renderThanks() {
+  const grid = document.getElementById('thanks-grid');
+  if (!grid) return;
+
+  grid.innerHTML = thanksData.map(t => {
+    if (t.type === 'github') {
+      return `
+        <a href="https://github.com/${t.github}" target="_blank" class="contributor-avatar" data-tooltip="${t.name}">
+          <img src="https://avatars.githubusercontent.com/${t.github}" alt="${t.name}" loading="lazy">
+        </a>
+      `;
+    } else {
+      return `
+        <div class="contributor-avatar supporter" data-tooltip="${t.name}">
+          <img src="${t.image}" alt="${t.name}" loading="lazy">
+        </div>
+      `;
+    }
+  }).join('');
 }
 
 // Scroll-triggered animations for project cards
