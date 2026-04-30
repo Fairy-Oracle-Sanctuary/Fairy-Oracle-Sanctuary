@@ -140,6 +140,16 @@ img {
   letter-spacing: -0.025em;
 }
 
+.nav-title::after {
+  content: "Fairy Oracle Sanctuary";
+}
+
+@media (max-width: 640px) {
+  .nav-title::after {
+    content: "FOS";
+  }
+}
+
 .nav-links {
   display: none;
   align-items: center;
