@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Fairy Oracle Sanctuary | 天机阁</title>
   <meta name="description" content="A developer collective with the spirit of free software at its core and open-source collaboration as its method.">
-  <link rel="icon" type="image/png" sizes="128x128" href="images/icon_128X128.png">
-  <link rel="shortcut icon" type="image/png" href="images/icon_128X128.png">
+  <link rel="icon" type="image/png" sizes="128x128" href="https://res.cloudinary.com/do6rggmy6/image/upload/v1777526682/icon_128X128_hxgexw.png">
+  <link rel="shortcut icon" type="image/png" href="https://res.cloudinary.com/do6rggmy6/image/upload/v1777526682/icon_128X128_hxgexw.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -19,11 +19,25 @@
       <div class="nav-container">
         <div class="nav-brand">
           <div class="nav-logo">
-            <img src="images/icon_128X128.png" alt="FOS Logo">
+            <img src="https://res.cloudinary.com/do6rggmy6/image/upload/v1777526682/icon_128X128_hxgexw.png" alt="FOS Logo">
           </div>
-          <span class="nav-title">Fairy Oracle Sanctuary</span></span>
+          <span class="nav-title">Fairy Oracle Sanctuary</span>
+        </div>
+        <div class="nav-links">
+          <a href="#values" class="nav-link" data-i18n="nav.values">Values</a>
+          <a href="#projects" class="nav-link" data-i18n="nav.projects">Projects</a>
+          <a href="#contributors" class="nav-link" data-i18n="nav.contributors">Contributors</a>
         </div>
         <div class="nav-actions">
+          <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <svg class="icon sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="5"/>
+              <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+            </svg>
+            <svg class="icon moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+            </svg>
+          </button>
           <div class="language-switcher">
             <button class="lang-btn" id="langBtn">
               <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -35,6 +49,8 @@
             <div class="lang-dropdown" id="langDropdown">
               <button class="lang-option active" data-lang="en">English</button>
               <button class="lang-option" data-lang="zh">中文</button>
+              <button class="lang-option" data-lang="ja">日本語</button>
+              <button class="lang-option" data-lang="ko">한국어</button>
             </div>
           </div>
           <a href="https://github.com/Fairy-Oracle-Sanctuary" target="_blank" class="nav-link" aria-label="GitHub">
@@ -75,13 +91,13 @@
           </div>
         </div>
         <div class="hero-logo">
-          <img src="images/logo_1080P.png" alt="FOS Large Logo">
+          <img src="https://res.cloudinary.com/do6rggmy6/image/upload/v1777526682/logo_1080P_fenwbe.png" alt="FOS Large Logo">
         </div>
       </div>
     </section>
 
     <!-- Values Section -->
-    <section class="values">
+    <section class="values" id="values">
       <div class="values-grid">
         <div class="value-card">
           <div class="value-icon blue">
@@ -116,7 +132,7 @@
     </section>
 
     <!-- Projects Section -->
-    <section class="projects">
+    <section class="projects" id="projects">
       <div class="projects-header">
         <div>
           <h2 class="section-title" data-i18n="projects.title">Core Repositories</h2>
@@ -138,7 +154,7 @@
     </section>
 
     <!-- Contributors Section -->
-    <section class="contributors">
+    <section class="contributors" id="contributors">
       <div class="contributors-header">
         <h2 class="section-title" data-i18n="contributors.title">Contributors</h2>
         <p class="section-subtitle" data-i18n="contributors.subtitle">The people who make it all possible.</p>
@@ -156,11 +172,18 @@
       </div>
     </section>
 
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M18 15l-6-6-6 6"/>
+      </svg>
+    </button>
+
     <!-- Footer -->
     <footer class="footer">
       <div class="footer-content">
         <div class="footer-logo">
-          <img src="images/icon_128X128.png" alt="FOS Logo">
+          <img src="https://res.cloudinary.com/do6rggmy6/image/upload/v1777526682/icon_128X128_hxgexw.png" alt="FOS Logo">
         </div>
         <h2 class="footer-title">Fairy Oracle Sanctuary</h2>
         <p class="footer-quote" data-i18n="footer.quote">"Connect the world, connect every person who believes in freedom and goodwill."</p>

@@ -82,6 +82,9 @@ function renderProjects() {
 // Internationalization messages
 const messages = {
   en: {
+    "nav.values": "Values",
+    "nav.projects": "Projects",
+    "nav.contributors": "Contributors",
     "hero.title": 'Connect The World with <span class="accent underline">Goodwill</span>',
     "hero.description": "天机阁 (Fairy Oracle Sanctuary) is a developer collective with the spirit of free software at its core and open-source collaboration as its method.",
     "hero.exploreButton": "Explore Repositories",
@@ -114,9 +117,12 @@ const messages = {
     "footer.quote": '"Connect the world, connect every person who believes in freedom and goodwill."',
     "footer.github": "Github",
     "footer.manifesto": "Manifesto",
-    "footer.copyright": "© {year} Fairy Oracle Sanctuary"
+    "footer.copyright": "🄯 {year} Fairy Oracle Sanctuary"
   },
   zh: {
+    "nav.values": "价值观",
+    "nav.projects": "项目",
+    "nav.contributors": "贡献者",
     "hero.title": 'Connect The World with <span class="accent underline">Goodwill</span>',
     "hero.description": "天机阁 (Fairy Oracle Sanctuary) 是一个以自由软件精神为内核、以开源协作为方式的开发者团体。",
     "hero.exploreButton": "探索仓库",
@@ -149,14 +155,92 @@ const messages = {
     "footer.quote": '"连接世界，连接每一个相信自由与善意的人。"',
     "footer.github": "Github",
     "footer.manifesto": "简章",
-    "footer.copyright": "© {year} 天机阁"
+    "footer.copyright": "🄯 {year} 天机阁"
+  },
+  ja: {
+    "nav.values": "価値",
+    "nav.projects": "プロジェクト",
+    "nav.contributors": "貢献者",
+    "hero.title": 'Connect The World with <span class="accent underline">Goodwill</span>',
+    "hero.description": "天机阁 (Fairy Oracle Sanctuary) は、自由ソフトウェアの精神を核とし、オープンソースのコラボレーションを手法とする開発者集団です。",
+    "hero.exploreButton": "リポジトリを探索",
+    "hero.manifestoButton": "私たちのマニフェスト",
+    "values.codeFree.title": "コードは自由",
+    "values.codeFree.description": "私たちは、ソフトウェアがユーザーから自由を奪うのではなく、自由を与えることを保証するために、GPLやAGPLなどのコピーレフト・ライセンスを好みます。",
+    "values.peopleMatter.title": "人が大切",
+    "values.peopleMatter.description": "背景に関わらず、私たちはコードとその背後にいる人を大切にします。憎しみはなく、成長だけがあります。",
+    "values.purePassion.title": "純粋な情熱",
+    "values.purePassion.description": "私たちは、前提条件や見返りを期待することなく、私たちが創り出したものをあなたと共有することを厭いません。",
+    "projects.title": "コアリポジトリ",
+    "projects.subtitle": "私たちのサンクチュアリのデジタル成果物を垣間見ることができます。",
+    "projects.viewAll": "すべてのプロジェクトを表示",
+    "projects.items.qtFluentWidgets.name": "Qt-Fluent-Widgets",
+    "projects.items.qtFluentWidgets.desc": "Qt 用の Fluent Design コンポーネント ライブラリ。",
+    "projects.items.pysideFluentWidgetsPro.name": "PySide6-Fluent-Widgets-Pro",
+    "projects.items.pysideFluentWidgetsPro.desc": "PySide6 用の Fluent Design コンポーネント ライブラリ。",
+    "projects.items.kekkaiWorkshop.name": "Kekkai Workshop",
+    "projects.items.kekkaiWorkshop.desc": "ビデオのローカライズを支援するツール。プロジェクト管理、ビデオのダウンロード、字幕の抽出、AI 翻訳、ビデオのエンコードをサポートします。",
+    "projects.items.neoBotFramework.name": "NEO-Bot-Framework",
+    "projects.items.neoBotFramework.desc": "モダンで高性能なボットフレームワーク。",
+    "projects.items.EX-FMBE-simulator.name": "EX-FMBE-simulator",
+    "projects.items.EX-FMBE-simulator.desc": "Minecraft Bedrock Edition FMBE シミュレーター。",
+    "projects.items.BB-CVT-FMBE.name": "BB-CVT-FMBE",
+    "projects.items.BB-CVT-FMBE.desc": "Minecraft Bedrock Edition モデルコンバーター。",
+    "contributors.title": "貢献者",
+    "contributors.subtitle": "すべてを可能にする人々。",
+    "contributors.supportersTitle": "友人 ＆ サポーター",
+    "contributors.supportersSubtitle": "コードがなくても私たちの精神を共有する人々。",
+    "footer.quote": '“世界を繋ぎ、自由と善意を信じるすべての人を繋ぐ。”',
+    "footer.github": "Github",
+    "footer.manifesto": "マニフェスト",
+    "footer.copyright": "🄯 {year} 天机阁 (Fairy Oracle Sanctuary)"
+  },
+  ko: {
+    "nav.values": "가치",
+    "nav.projects": "프로젝트",
+    "nav.contributors": "기여자",
+    "hero.title": 'Connect The World with <span class="accent underline">Goodwill</span>',
+    "hero.description": "천기각 (Fairy Oracle Sanctuary)은 자유 소프트웨어 정신을 핵심으로 하고 오픈 소스 협업을 방법으로 하는 개발자 집단입니다.",
+    "hero.exploreButton": "저장소 탐색",
+    "hero.manifestoButton": "우리의 매니페스토",
+    "values.codeFree.title": "코드는 자유",
+    "values.codeFree.description": "우리는 소프트웨어가 사용자에게 자유를 박탈하는 것이 아니라 자유를 보장하기 위해 GPL 또는 AGPL과 같은 카피레프트 라이선스를 선호합니다.",
+    "values.peopleMatter.title": "사람이 중요",
+    "values.peopleMatter.description": "배경에 상관없이 우리는 코드와 그 뒤에 있는 사람을 소중히 여깁니다. 증오는 없고 성장만 있습니다.",
+    "values.purePassion.title": "순수한 열정",
+    "values.purePassion.description": "우리는 어떠한 전제 조건이나 보답에 대한 기대 없이 우리가 만든 것을 여러분과 공유할 준비가 되어 있습니다.",
+    "projects.title": "핵심 저장소",
+    "projects.subtitle": "우리 성역의 디지털 결과물을 살짝 엿보세요.",
+    "projects.viewAll": "모든 프로젝트 보기",
+    "projects.items.qtFluentWidgets.name": "Qt-Fluent-Widgets",
+    "projects.items.qtFluentWidgets.desc": "Qt용 Fluent Design 구성 요소 라이브러리.",
+    "projects.items.pysideFluentWidgetsPro.name": "PySide6-Fluent-Widgets-Pro",
+    "projects.items.pysideFluentWidgetsPro.desc": "PySide6용 Fluent Design 구성 요소 라이브러리.",
+    "projects.items.kekkaiWorkshop.name": "Kekkai Workshop",
+    "projects.items.kekkaiWorkshop.desc": "프로젝트 관리, 비디오 다운로드, 자막 추출, AI 번역 및 비디오 인코딩을 지원하는 비디오 현지화 도구입니다.",
+    "projects.items.neoBotFramework.name": "NEO-Bot-Framework",
+    "projects.items.neoBotFramework.desc": "현대적이고 고성능의 봇 프레임워크.",
+    "projects.items.EX-FMBE-simulator.name": "EX-FMBE-simulator",
+    "projects.items.EX-FMBE-simulator.desc": "마인크래프트 베드락 에디션 FMBE 시뮬레이터.",
+    "projects.items.BB-CVT-FMBE.name": "BB-CVT-FMBE",
+    "projects.items.BB-CVT-FMBE.desc": "마인크래프트 베드락 에디션 모델 변환기.",
+    "contributors.title": "기여자",
+    "contributors.subtitle": "이 모든 것을 가능하게 하는 사람들.",
+    "contributors.supportersTitle": "친구 및 후원자",
+    "contributors.supportersSubtitle": "코드 없이도 우리의 정신을 공유하는 사람들.",
+    "footer.quote": '“세상을 연결하고, 자유와 선의를 믿는 모든 사람을 연결합니다.”',
+    "footer.github": "Github",
+    "footer.manifesto": "매니페스토",
+    "footer.copyright": "🄯 {year} 천기각 (Fairy Oracle Sanctuary)"
   }
 };
 
 // Language names for display
 const languageNames = {
   en: "English",
-  zh: "中文"
+  zh: "中文",
+  ja: "日本語",
+  ko: "한국어"
 };
 
 // Current locale
@@ -164,6 +248,13 @@ let currentLocale = 'en';
 
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
+  const navEntry = performance.getEntriesByType?.('navigation')?.[0];
+  const isReload = navEntry?.type === 'reload';
+  if (isReload && window.location.hash) {
+    history.replaceState(null, '', window.location.pathname + window.location.search);
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+  }
+
   // Set copyright year
   const copyrightEl = document.getElementById('copyright');
   if (copyrightEl) {
@@ -232,6 +323,27 @@ document.addEventListener('DOMContentLoaded', () => {
       updateTranslations();
     }
   }
+
+  // Theme toggle
+  const themeToggle = document.getElementById('themeToggle');
+  const savedTheme = localStorage.getItem('theme');
+  
+  // Apply saved theme or detect system preference
+  if (savedTheme) {
+    document.documentElement.setAttribute('data-theme', savedTheme);
+  } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  }
+
+  if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+    });
+  }
+
   // Render projects
   renderProjects();
   // Render contributors
@@ -240,6 +352,22 @@ document.addEventListener('DOMContentLoaded', () => {
   renderSupporters();
   // Particle background
   initParticles();
+
+  // Back to top button
+  const backToTop = document.getElementById('backToTop');
+  if (backToTop) {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        backToTop.classList.add('show');
+      } else {
+        backToTop.classList.remove('show');
+      }
+    });
+
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
 });
 
 function initParticles() {
@@ -305,14 +433,15 @@ function renderContributors() {
 
 // Supporters data - Discord friends who share our spirit
 const supportersData = [
-  { name: "AxisesEMG(Chinese)", image: "images/contributors/axisesemg.jpg" },
-  { name: "Saloth Sar(Chinese)", image: "images/contributors/salothsar.jpg" },
-  { name: "Pea Smoothie(Chinese)", image: "images/contributors/peasmoothie.jpg" },
-  { name: "QingQingHan(Chinese)", image: "images/contributors/qqh.jpg" },
-  { name: "awedwd(Chinese)", image: "images/contributors/awedwd.jpg" },
-  { name: "AI(Chinese)", image: "images/contributors/ai.png" },
+  { name: "AxisesEMG(China)", image: "images/contributors/axisesemg.jpg" },
+  { name: "Saloth Sar(China)", image: "images/contributors/salothsar.jpg" },
+  { name: "Pea Smoothie(China)", image: "images/contributors/peasmoothie.jpg" },
+  { name: "QingQingHan(China)", image: "images/contributors/qqh.jpg" },
+  { name: "awedwd(China)", image: "images/contributors/awedwd.jpg" },
+  { name: "AI(China)", image: "images/contributors/ai.png" },
   { name: "jeanmajid(British)", image: "images/contributors/jeanmajid.webp" },
   { name: "Base(Japan)", image: "images/contributors/base.webp" },
+  { name: "Strs2(Japan)", image: "images/contributors/strs2.webp" },
   { name: "Vi(Vietnam)", image: "images/contributors/vi.webp" },
   { name: "pudding(Philippine)", image: "images/contributors/pudding.webp" },
 ];
