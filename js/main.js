@@ -4,38 +4,73 @@ const projectsData = [
     id: 'qtFluentWidgets',
     url: 'https://github.com/Fairy-Oracle-Sanctuary/Qt-Fluent-Widgets',
     image: 'https://res.cloudinary.com/do6rggmy6/image/upload/v1777485902/qtFluentWidgets_qeb25t.png',
-    tags: ['C++', 'Qt', 'UI']
+    tags: ['C++', 'Qt', 'UI'],
+    category: 'ui'
   },
   {
     id: 'pysideFluentWidgetsPro',
     url: 'https://github.com/Fairy-Oracle-Sanctuary/PySide6-Fluent-Widgets-Pro',
     image: 'https://res.cloudinary.com/do6rggmy6/image/upload/v1777485867/pysideFluentWidgetsPro_eido2b.png',
-    tags: ['Python', 'PySide6', 'UI']
+    tags: ['Python', 'PySide6', 'UI'],
+    category: 'ui'
   },
   {
     id: 'kekkaiWorkshop',
     url: 'https://github.com/Fairy-Oracle-Sanctuary/Touhou-translate',
     image: 'https://res.cloudinary.com/do6rggmy6/image/upload/v1777485917/kekkaiWorkshop_gbpg4k.png',
-    tags: ['Video', 'Localization', 'AI', 'Automation']
+    tags: ['Video', 'Localization', 'AI', 'Automation'],
+    category: 'free-software'
   },
   {
     id: 'neoBotFramework',
     url: 'https://github.com/Fairy-Oracle-Sanctuary/NEO-Bot-Framework',
     image: 'https://res.cloudinary.com/do6rggmy6/image/upload/v1777485866/neoBotFramework_lqa1v4.jpg',
-    tags: ['Framework', 'Automation', 'TypeScript']
+    tags: ['Framework', 'Automation', 'TypeScript'],
+    category: 'bot'
   },
   {
     id: "EX-FMBE-simulator",
     url: "https://github.com/Fairy-Oracle-Sanctuary/EX-FMBE-simulator",
     image: 'https://res.cloudinary.com/do6rggmy6/image/upload/v1777485867/EX-FMBE-simulator_p3djr7.png',
-    tags: ["simulator", "Minecraft", "Command"]
+    tags: ["simulator", "Minecraft", "Command"],
+    category: 'minecraft'
   },
   {
     id: "BB-CVT-FMBE",
     url: "https://github.com/Fairy-Oracle-Sanctuary/BB-CVT-FMBE",
     image: 'https://res.cloudinary.com/do6rggmy6/image/upload/v1777486058/BB-CVT-FMBE_xlgkee.png',
-    tags: ["simulator", "Minecraft", "Command"]
+    tags: ["simulator", "Minecraft", "Command"],
+    category: 'minecraft'
+  },
+  {
+    id: "FMBE-Hub",
+    url: "https://github.com/Fairy-Oracle-Sanctuary/FMBE-Hub",
+    image: 'https://res.cloudinary.com/do6rggmy6/image/upload/v1779106781/FMBE-Hub_n9uudl.png',
+    tags: ["Minecraft", "Command"],
+    category: 'minecraft'
+  },
+  {
+    id: "Touhou-Chabangeki-Collect",
+    url: "https://github.com/Fairy-Oracle-Sanctuary/Touhou-Chabangeki-Collect",
+    image: 'https://res.cloudinary.com/do6rggmy6/image/upload/v1779106966/Touhou-Chabangeki-Collect_qfv16n.png',
+    tags: ["Touhou"],
+    category: 'touhou'
+  },
+  {
+    id: "Touhou-translate",
+    url: "https://github.com/Fairy-Oracle-Sanctuary/Touhou-translate",
+    image: 'https://res.cloudinary.com/do6rggmy6/image/upload/v1779107041/%E6%98%9F%E6%9C%88%E5%A4%9C_xasjdm.jpg',
+    tags: ["Touhou"],
+    category: 'touhou'
   }
+];
+
+const projectCategories = [
+  { id: 'free-software', i18nKey: 'projects.category.freeSoftware' },
+  { id: 'bot', i18nKey: 'projects.category.bot' },
+  { id: 'ui', i18nKey: 'projects.category.ui' },
+  { id: 'touhou', i18nKey: 'projects.category.touhou' },
+  { id: 'minecraft', i18nKey: 'projects.category.minecraft' }
 ];
 
 // GitHub icon SVG
@@ -48,7 +83,9 @@ function renderProjects() {
   const grid = document.getElementById('projects-grid');
   if (!grid) return;
 
-  grid.innerHTML = projectsData.map(project => {
+  const isAllProjectsPage = document.querySelector('.all-projects-page') !== null;
+
+  const createCardHtml = (project) => {
     const imageHtml = project.image
       ? `<div class="project-image-wrapper"><img class="project-image" src="${project.image}" alt="${project.id}"></div>`
       : `<div class="project-image-wrapper"><div class="project-image-fallback" style="display: flex;">
@@ -71,7 +108,74 @@ function renderProjects() {
       </div>
     </a>
   `;
-  }).join('');
+  };
+
+  if (isAllProjectsPage) {
+    // Render by categories
+    grid.innerHTML = projectCategories.map(cat => {
+      const catProjects = projectsData.filter(p => p.category === cat.id);
+      if (catProjects.length === 0) return ''; // Skip empty categories
+      
+      return `
+        <div class="project-category-section">
+          <h2 class="project-category-title" data-i18n="${cat.i18nKey}">${messages[currentLocale][cat.i18nKey] || cat.id}</h2>
+          <div class="projects-subgrid">
+            ${catProjects.map(createCardHtml).join('')}
+          </div>
+        </div>
+      `;
+    }).join('');
+    
+    // Add grid styling to subgrids
+    grid.style.display = 'block'; // the parent container becomes a block wrapper
+
+    // Attach search logic
+    const searchInput = document.getElementById('projectSearch');
+    const noResultsEl = document.getElementById('no-results');
+    
+    if (searchInput) {
+      searchInput.addEventListener('input', (e) => {
+        const query = e.target.value.toLowerCase().trim();
+        let anyVisible = false;
+
+        // Iterate through all category sections
+        const categorySections = grid.querySelectorAll('.project-category-section');
+        categorySections.forEach(section => {
+          let visibleInCategory = false;
+          const cards = section.querySelectorAll('.project-card');
+
+          cards.forEach(card => {
+            const title = card.querySelector('.project-title').textContent.toLowerCase();
+            const desc = card.querySelector('.project-description').textContent.toLowerCase();
+            const tags = Array.from(card.querySelectorAll('.tag')).map(t => t.textContent.toLowerCase());
+            
+            const isMatch = title.includes(query) || desc.includes(query) || tags.some(tag => tag.includes(query));
+            
+            if (isMatch) {
+              card.style.display = 'flex';
+              visibleInCategory = true;
+              anyVisible = true;
+            } else {
+              card.style.display = 'none';
+            }
+          });
+
+          // Hide category header if no projects match in this category
+          section.style.display = visibleInCategory ? 'block' : 'none';
+        });
+
+        // Show/hide no results message
+        if (noResultsEl) {
+          noResultsEl.style.display = anyVisible || query === '' ? 'none' : 'block';
+        }
+      });
+    }
+  } else {
+    // Render flat list
+    grid.innerHTML = projectsData.slice(0, 6).map(createCardHtml).join('');
+    // Ensure parent is grid
+    grid.style.display = '';
+  }
 
   // Re-observe new cards for animation
   document.querySelectorAll('.project-card').forEach(card => {
@@ -99,6 +203,15 @@ const messages = {
     "projects.title": "Core Repositories",
     "projects.subtitle": "A glimpse into our sanctuary's digital output.",
     "projects.viewAll": "View all projects",
+    "projects.exploreMore": "Project Details",
+    "projects.backHome": "← Back Home",
+    "projects.searchPlaceholder": "Search projects by name or tag...",
+    "projects.noResults": "No projects found matching your criteria.",
+    "projects.category.freeSoftware": "Free Software",
+    "projects.category.bot": "Bot Frameworks",
+    "projects.category.ui": "UI Components",
+    "projects.category.touhou": "Touhou Project",
+    "projects.category.minecraft": "Minecraft Tools",
     "projects.items.qtFluentWidgets.name": "Qt-Fluent-Widgets",
     "projects.items.qtFluentWidgets.desc": "A fluent design component library for Qt/PySide6.",
     "projects.items.pysideFluentWidgetsPro.name": "PySide6-Fluent-Widgets-Pro",
@@ -111,6 +224,12 @@ const messages = {
     "projects.items.EX-FMBE-simulator.desc": "Minecraft Bedrock Edition FMBE simulator.",
     "projects.items.BB-CVT-FMBE.name": "BB-CVT-FMBE",
     "projects.items.BB-CVT-FMBE.desc": "Minecraft Bedrock Edition model converter.",
+    "projects.items.FMBE-Hub.name": "FMBE-Hub",
+    "projects.items.FMBE-Hub.desc": "A collection of FMBE tools for Minecraft Bedrock Edition.",
+    "projects.items.Touhou-Chabangeki-Collect.name": "Touhou-Chabangeki-Collect",
+    "projects.items.Touhou-Chabangeki-Collect.desc": "A collection website for Touhou Project tea-time dramas.",
+    "projects.items.Touhou-translate.name": "Touhou-translate",
+    "projects.items.Touhou-translate.desc": "A translation and repost project for Touhou Project tea-time dramas.",
     "contributors.title": "Contributors",
     "contributors.subtitle": "The people who make it all possible.",
     "contributors.supportersTitle": "Friends & Supporters",
@@ -141,6 +260,15 @@ const messages = {
     "projects.title": "核心仓库",
     "projects.subtitle": "一窥我们的数字产出。",
     "projects.viewAll": "查看全部项目",
+    "projects.exploreMore": "项目详情",
+    "projects.backHome": "← 返回首页",
+    "projects.searchPlaceholder": "按名称或标签搜索项目...",
+    "projects.noResults": "没有找到符合条件的项目。",
+    "projects.category.freeSoftware": "自由软件",
+    "projects.category.bot": "机器人框架",
+    "projects.category.ui": "UI 组件 / 界面库",
+    "projects.category.touhou": "东方 Project",
+    "projects.category.minecraft": "Minecraft 游戏工具",
     "projects.items.qtFluentWidgets.name": "Qt-Fluent-Widgets",
     "projects.items.qtFluentWidgets.desc": "适用于 Qt 的 Fluent Design 组件库。",
     "projects.items.pysideFluentWidgetsPro.name": "PySide6-Fluent-Widgets-Pro",
@@ -153,6 +281,12 @@ const messages = {
     "projects.items.EX-FMBE-simulator.desc": "Minecraft 基岩版FMBE模拟器。",
     "projects.items.BB-CVT-FMBE.name": "BB-CVT-FMBE",
     "projects.items.BB-CVT-FMBE.desc": "Minecraft 基岩版模型转换器。",
+    "projects.items.FMBE-Hub.name": "FMBE-Hub",
+    "projects.items.FMBE-Hub.desc": "Minecraft 基岩版FMBE工具合集。",
+    "projects.items.Touhou-Chabangeki-Collect.name": "Touhou-Chabangeki-Collect",
+    "projects.items.Touhou-Chabangeki-Collect.desc": "东方Project茶番剧整合网站。",
+    "projects.items.Touhou-translate.name": "Touhou-translate",
+    "projects.items.Touhou-translate.desc": "东方Project茶番剧翻译转载计划。",
     "contributors.title": "贡献者",
     "contributors.subtitle": "让一切成为可能的人们",
     "contributors.supportersTitle": "朋友与支持者",
@@ -183,6 +317,15 @@ const messages = {
     "projects.title": "コアリポジトリ",
     "projects.subtitle": "私たちのサンクチュアリのデジタル成果物を垣間見ることができます。",
     "projects.viewAll": "すべてのプロジェクトを表示",
+    "projects.exploreMore": "プロジェクト詳細",
+    "projects.backHome": "← ホームに戻る",
+    "projects.searchPlaceholder": "名前やタグでプロジェクトを検索...",
+    "projects.noResults": "条件に一致するプロジェクトは見つかりませんでした。",
+    "projects.category.freeSoftware": "フリーソフトウェア",
+    "projects.category.bot": "ボットフレームワーク",
+    "projects.category.ui": "UIコンポーネント",
+    "projects.category.touhou": "東方Project",
+    "projects.category.minecraft": "Minecraft ツール",
     "projects.items.qtFluentWidgets.name": "Qt-Fluent-Widgets",
     "projects.items.qtFluentWidgets.desc": "Qt 用の Fluent Design コンポーネント ライブラリ。",
     "projects.items.pysideFluentWidgetsPro.name": "PySide6-Fluent-Widgets-Pro",
@@ -195,6 +338,12 @@ const messages = {
     "projects.items.EX-FMBE-simulator.desc": "Minecraft Bedrock Edition FMBE シミュレーター。",
     "projects.items.BB-CVT-FMBE.name": "BB-CVT-FMBE",
     "projects.items.BB-CVT-FMBE.desc": "Minecraft Bedrock Edition モデルコンバーター。",
+    "projects.items.FMBE-Hub.name": "FMBE-Hub",
+    "projects.items.FMBE-Hub.desc": "Minecraft Bedrock Edition向けFMBEツール集。",
+    "projects.items.Touhou-Chabangeki-Collect.name": "Touhou-Chabangeki-Collect",
+    "projects.items.Touhou-Chabangeki-Collect.desc": "東方Project茶番劇まとめサイト。",
+    "projects.items.Touhou-translate.name": "Touhou-translate",
+    "projects.items.Touhou-translate.desc": "東方Project茶番劇翻訳・転載プロジェクト。",
     "contributors.title": "貢献者",
     "contributors.subtitle": "すべてを可能にする人々。",
     "contributors.supportersTitle": "友人 ＆ サポーター",
@@ -225,6 +374,15 @@ const messages = {
     "projects.title": "핵심 저장소",
     "projects.subtitle": "우리 성역의 디지털 결과물을 살짝 엿보세요.",
     "projects.viewAll": "모든 프로젝트 보기",
+    "projects.exploreMore": "프로젝트 세부 정보",
+    "projects.backHome": "← 홈으로 돌아가기",
+    "projects.searchPlaceholder": "이름이나 태그로 프로젝트 검색...",
+    "projects.noResults": "조건에 맞는 프로젝트를 찾을 수 없습니다.",
+    "projects.category.freeSoftware": "자유 소프트웨어",
+    "projects.category.bot": "봇 프레임워크",
+    "projects.category.ui": "UI 구성 요소",
+    "projects.category.touhou": "동방 프로젝트",
+    "projects.category.minecraft": "Minecraft 도구",
     "projects.items.qtFluentWidgets.name": "Qt-Fluent-Widgets",
     "projects.items.qtFluentWidgets.desc": "Qt용 Fluent Design 구성 요소 라이브러리.",
     "projects.items.pysideFluentWidgetsPro.name": "PySide6-Fluent-Widgets-Pro",
@@ -237,6 +395,12 @@ const messages = {
     "projects.items.EX-FMBE-simulator.desc": "마인크래프트 베드락 에디션 FMBE 시뮬레이터.",
     "projects.items.BB-CVT-FMBE.name": "BB-CVT-FMBE",
     "projects.items.BB-CVT-FMBE.desc": "마인크래프트 베드락 에디션 모델 변환기.",
+    "projects.items.FMBE-Hub.name": "FMBE-Hub",
+    "projects.items.FMBE-Hub.desc": "마인크래프트 베드락 에디션용 FMBE 도구 모음집입니다.",
+    "projects.items.Touhou-Chabangeki-Collect.name": "Touhou-Chabangeki-Collect",
+    "projects.items.Touhou-Chabangeki-Collect.desc": "동방 프로젝트 차반극 통합 웹사이트입니다.",
+    "projects.items.Touhou-translate.name": "Touhou-translate",
+    "projects.items.Touhou-translate.desc": "동방 프로젝트 차반극 번역 및 재게시 프로젝트입니다.",
     "contributors.title": "기여자",
     "contributors.subtitle": "이 모든 것을 가능하게 하는 사람들.",
     "contributors.supportersTitle": "친구 및 후원자",
@@ -267,6 +431,15 @@ const messages = {
     "projects.title": "Dépôts principaux",
     "projects.subtitle": "Un aperçu de la production numérique de notre sanctuaire.",
     "projects.viewAll": "Voir tous les projets",
+    "projects.exploreMore": "Détails du projet",
+    "projects.backHome": "← Retour à l'accueil",
+    "projects.searchPlaceholder": "Rechercher des projets par nom ou tag...",
+    "projects.noResults": "Aucun projet trouvé correspondant à vos critères.",
+    "projects.category.freeSoftware": "Logiciel Libre",
+    "projects.category.bot": "Frameworks Bot",
+    "projects.category.ui": "Composants UI",
+    "projects.category.touhou": "Touhou Project",
+    "projects.category.minecraft": "Outils Minecraft",
     "projects.items.qtFluentWidgets.name": "Qt-Fluent-Widgets",
     "projects.items.qtFluentWidgets.desc": "Une bibliothèque de composants Fluent Design pour Qt.",
     "projects.items.pysideFluentWidgetsPro.name": "PySide6-Fluent-Widgets-Pro",
@@ -279,6 +452,12 @@ const messages = {
     "projects.items.EX-FMBE-simulator.desc": "Simulateur FMBE pour Minecraft Bedrock Edition.",
     "projects.items.BB-CVT-FMBE.name": "BB-CVT-FMBE",
     "projects.items.BB-CVT-FMBE.desc": "Convertisseur de modèle pour Minecraft Bedrock Edition.",
+    "projects.items.FMBE-Hub.name": "FMBE-Hub",
+    "projects.items.FMBE-Hub.desc": "Une collection d'outils FMBE pour Minecraft Bedrock Edition.",
+    "projects.items.Touhou-Chabangeki-Collect.name": "Touhou-Chabangeki-Collect",
+    "projects.items.Touhou-Chabangeki-Collect.desc": "Un site de collection de dramas théâtraux Touhou Project.",
+    "projects.items.Touhou-translate.name": "Touhou-translate",
+    "projects.items.Touhou-translate.desc": "Un projet de traduction et de republication de dramas théâtraux Touhou Project.",
     "contributors.title": "Contributeurs",
     "contributors.subtitle": "Ceux qui rendent tout cela possible.",
     "contributors.supportersTitle": "Amis & Soutiens",
@@ -309,6 +488,15 @@ const messages = {
     "projects.title": "Repositorios principales",
     "projects.subtitle": "Un vistazo a la producción digital de nuestro santuario.",
     "projects.viewAll": "Ver todos los proyectos",
+    "projects.exploreMore": "Detalles del proyecto",
+    "projects.backHome": "← Volver al inicio",
+    "projects.searchPlaceholder": "Buscar proyectos por nombre o etiqueta...",
+    "projects.noResults": "No se encontraron proyectos que coincidan con sus criterios.",
+    "projects.category.freeSoftware": "Software Libre",
+    "projects.category.bot": "Frameworks de Bots",
+    "projects.category.ui": "Componentes de UI",
+    "projects.category.touhou": "Touhou Project",
+    "projects.category.minecraft": "Herramientas de Minecraft",
     "projects.items.qtFluentWidgets.name": "Qt-Fluent-Widgets",
     "projects.items.qtFluentWidgets.desc": "Una biblioteca de componentes Fluent Design para Qt.",
     "projects.items.pysideFluentWidgetsPro.name": "PySide6-Fluent-Widgets-Pro",
@@ -321,6 +509,12 @@ const messages = {
     "projects.items.EX-FMBE-simulator.desc": "Simulador FMBE para Minecraft Bedrock Edition.",
     "projects.items.BB-CVT-FMBE.name": "BB-CVT-FMBE",
     "projects.items.BB-CVT-FMBE.desc": "Convertidor de modelos para Minecraft Bedrock Edition.",
+    "projects.items.FMBE-Hub.name": "FMBE-Hub",
+    "projects.items.FMBE-Hub.desc": "Una colección de herramientas FMBE para Minecraft Bedrock Edition.",
+    "projects.items.Touhou-Chabangeki-Collect.name": "Touhou-Chabangeki-Collect",
+    "projects.items.Touhou-Chabangeki-Collect.desc": "Un sitio web de recopilación de dramas de té de Touhou Project.",
+    "projects.items.Touhou-translate.name": "Touhou-translate",
+    "projects.items.Touhou-translate.desc": "Un proyecto de traducción y republicación de dramas de té de Touhou Project.",
     "contributors.title": "Colaboradores",
     "contributors.subtitle": "Las personas que hacen todo posible.",
     "contributors.supportersTitle": "Amigos y colaboradores",
@@ -351,6 +545,15 @@ const messages = {
     "projects.title": "Repositórios principais",
     "projects.subtitle": "Um vislumbre da produção digital do nosso santuário.",
     "projects.viewAll": "Ver todos os projetos",
+    "projects.exploreMore": "Detalhes do projeto",
+    "projects.backHome": "← Voltar ao Início",
+    "projects.searchPlaceholder": "Buscar projetos por nome ou tag...",
+    "projects.noResults": "Nenhum projeto encontrado correspondente aos seus critérios.",
+    "projects.category.freeSoftware": "Software Livre",
+    "projects.category.bot": "Frameworks de Bots",
+    "projects.category.ui": "Componentes de UI",
+    "projects.category.touhou": "Touhou Project",
+    "projects.category.minecraft": "Ferramentas do Minecraft",
     "projects.items.qtFluentWidgets.name": "Qt-Fluent-Widgets",
     "projects.items.qtFluentWidgets.desc": "Uma biblioteca de componentes Fluent Design para Qt.",
     "projects.items.pysideFluentWidgetsPro.name": "PySide6-Fluent-Widgets-Pro",
@@ -363,6 +566,12 @@ const messages = {
     "projects.items.EX-FMBE-simulator.desc": "Simulador FMBE para Minecraft Bedrock Edition.",
     "projects.items.BB-CVT-FMBE.name": "BB-CVT-FMBE",
     "projects.items.BB-CVT-FMBE.desc": "Conversor de modelos para Minecraft Bedrock Edition.",
+    "projects.items.FMBE-Hub.name": "FMBE-Hub",
+    "projects.items.FMBE-Hub.desc": "Uma coleção de ferramentas FMBE para Minecraft Bedrock Edition.",
+    "projects.items.Touhou-Chabangeki-Collect.name": "Touhou-Chabangeki-Collect",
+    "projects.items.Touhou-Chabangeki-Collect.desc": "Um site de coleta de dramas de chá do Touhou Project.",
+    "projects.items.Touhou-translate.name": "Touhou-translate",
+    "projects.items.Touhou-translate.desc": "Um projeto de tradução e republicação de dramas de chá do Touhou Project.",
     "contributors.title": "Colaboradores",
     "contributors.subtitle": "As pessoas que tornam tudo possível.",
     "contributors.supportersTitle": "Amigos e apoiadores",
@@ -393,6 +602,15 @@ const messages = {
     "projects.title": "Kern-Repositories",
     "projects.subtitle": "Ein Einblick in die digitale Produktion unseres Heiligtums.",
     "projects.viewAll": "Alle Projekte anzeigen",
+    "projects.exploreMore": "Projektdetails",
+    "projects.backHome": "← Zurück zur Startseite",
+    "projects.searchPlaceholder": "Projekte nach Name oder Tag suchen...",
+    "projects.noResults": "Keine Projekte gefunden, die Ihren Kriterien entsprechen.",
+    "projects.category.freeSoftware": "Freie Software",
+    "projects.category.bot": "Bot Frameworks",
+    "projects.category.ui": "UI-Komponenten",
+    "projects.category.touhou": "Touhou Project",
+    "projects.category.minecraft": "Minecraft-Tools",
     "projects.items.qtFluentWidgets.name": "Qt-Fluent-Widgets",
     "projects.items.qtFluentWidgets.desc": "Eine Fluent-Design-Komponentenbibliothek für Qt.",
     "projects.items.pysideFluentWidgetsPro.name": "PySide6-Fluent-Widgets-Pro",
@@ -405,6 +623,12 @@ const messages = {
     "projects.items.EX-FMBE-simulator.desc": "FMBE-Simulator für Minecraft Bedrock Edition.",
     "projects.items.BB-CVT-FMBE.name": "BB-CVT-FMBE",
     "projects.items.BB-CVT-FMBE.desc": "Modellkonverter für Minecraft Bedrock Edition.",
+    "projects.items.FMBE-Hub.name": "FMBE-Hub",
+    "projects.items.FMBE-Hub.desc": "Eine Sammlung von FMBE-Tools für Minecraft Bedrock Edition.",
+    "projects.items.Touhou-Chabangeki-Collect.name": "Touhou-Chabangeki-Collect",
+    "projects.items.Touhou-Chabangeki-Collect.desc": "Eine Sammelseite für Touhou-Project-Teezeit-Dramen.",
+    "projects.items.Touhou-translate.name": "Touhou-translate",
+    "projects.items.Touhou-translate.desc": "Ein Übersetzungs- und Weiterveröffentlichungsprojekt für Touhou-Project-Teezeit-Dramen.",
     "contributors.title": "Mitwirkende",
     "contributors.subtitle": "Die Menschen, die alles möglich machen.",
     "contributors.supportersTitle": "Freunde & Unterstützer",
@@ -435,6 +659,15 @@ const messages = {
     "projects.title": "मुख्य रिपॉजिटरी",
     "projects.subtitle": "हमारे अभयारण्य के डिजिटल आउटपुट की झलक।",
     "projects.viewAll": "सभी परियोजनाएँ देखें",
+    "projects.exploreMore": "परियोजना विवरण",
+    "projects.backHome": "← होम पर वापस जाएँ",
+    "projects.searchPlaceholder": "नाम या टैग द्वारा परियोजनाएँ खोजें...",
+    "projects.noResults": "आपके मानदंडों से मेल खाने वाली कोई परियोजना नहीं मिली।",
+    "projects.category.freeSoftware": "मुक्त सॉफ़्टवेयर",
+    "projects.category.bot": "बॉट फ्रेमवर्क",
+    "projects.category.ui": "यूआई घटक",
+    "projects.category.touhou": "तोहो प्रोजेक्ट",
+    "projects.category.minecraft": "Minecraft टूल",
     "projects.items.qtFluentWidgets.name": "Qt-Fluent-Widgets",
     "projects.items.qtFluentWidgets.desc": "Qt के लिए Fluent Design घटक पुस्तकालय।",
     "projects.items.pysideFluentWidgetsPro.name": "PySide6-Fluent-Widgets-Pro",
@@ -447,6 +680,12 @@ const messages = {
     "projects.items.EX-FMBE-simulator.desc": "Minecraft Bedrock Edition FMBE सिम्युलेटर।",
     "projects.items.BB-CVT-FMBE.name": "BB-CVT-FMBE",
     "projects.items.BB-CVT-FMBE.desc": "Minecraft Bedrock Edition मॉडल परिवर्तक।",
+    "projects.items.FMBE-Hub.name": "FMBE-Hub",
+    "projects.items.FMBE-Hub.desc": "Minecraft Bedrock Edition के लिए FMBE उपकरणों का एक संग्रह।",
+    "projects.items.Touhou-Chabangeki-Collect.name": "Touhou-Chabangeki-Collect",
+    "projects.items.Touhou-Chabangeki-Collect.desc": "Touhou Project चाय-समय नाटकों का एक संग्रहण वेबसाइट।",
+    "projects.items.Touhou-translate.name": "Touhou-translate",
+    "projects.items.Touhou-translate.desc": "Touhou Project चाय-समय नाटकों का अनुवाद और पुनर्प्रकाशन परियोजना।",
     "contributors.title": "योगदानकर्ता",
     "contributors.subtitle": "वे लोग जो सब कुछ संभव बनाते हैं।",
     "contributors.supportersTitle": "मित्र और समर्थक",
@@ -477,6 +716,15 @@ const messages = {
     "projects.title": "Pangunahing mga repositoryo",
     "projects.subtitle": "Isang sulyap sa digital na output ng aming dambana.",
     "projects.viewAll": "Tingnan ang lahat ng proyekto",
+    "projects.exploreMore": "Mga Detalye ng Proyekto",
+    "projects.backHome": "← Bumalik sa Home",
+    "projects.searchPlaceholder": "Maghanap ng mga proyekto sa pamamagitan ng pangalan o tag...",
+    "projects.noResults": "Walang nahanap na proyekto na tumutugma sa iyong pamantayan.",
+    "projects.category.freeSoftware": "Libreng Software",
+    "projects.category.bot": "Mga Bot Framework",
+    "projects.category.ui": "Mga Component ng UI",
+    "projects.category.touhou": "Touhou Project",
+    "projects.category.minecraft": "Mga Tool sa Minecraft",
     "projects.items.qtFluentWidgets.name": "Qt-Fluent-Widgets",
     "projects.items.qtFluentWidgets.desc": "Isang library ng bahagi ng Fluent Design para sa Qt.",
     "projects.items.pysideFluentWidgetsPro.name": "PySide6-Fluent-Widgets-Pro",
@@ -489,6 +737,12 @@ const messages = {
     "projects.items.EX-FMBE-simulator.desc": "FMBE simulator para sa Minecraft Bedrock Edition.",
     "projects.items.BB-CVT-FMBE.name": "BB-CVT-FMBE",
     "projects.items.BB-CVT-FMBE.desc": "Modelong converter para sa Minecraft Bedrock Edition.",
+    "projects.items.FMBE-Hub.name": "FMBE-Hub",
+    "projects.items.FMBE-Hub.desc": "Isang koleksyon ng mga tool na FMBE para sa Minecraft Bedrock Edition.",
+    "projects.items.Touhou-Chabangeki-Collect.name": "Touhou-Chabangeki-Collect",
+    "projects.items.Touhou-Chabangeki-Collect.desc": "Isang website na nagkakolekta ng mga drama ng tsaa ng Touhou Project.",
+    "projects.items.Touhou-translate.name": "Touhou-translate",
+    "projects.items.Touhou-translate.desc": "Isang proyekto sa pagsasalin at muling paglalathala ng mga drama ng tsaa ng Touhou Project.",
     "contributors.title": "Mga Kontribyutor",
     "contributors.subtitle": "Ang mga taong nagpapaging posible sa lahat.",
     "contributors.supportersTitle": "Mga kaibigan at tagasuporta",
@@ -519,6 +773,15 @@ const messages = {
     "projects.title": "Kho lưu trữ chính",
     "projects.subtitle": "Một cái nhìn thoáng qua về sản phẩm kỹ thuật số của thánh địa chúng tôi.",
     "projects.viewAll": "Xem tất cả dự án",
+    "projects.exploreMore": "Chi tiết dự án",
+    "projects.backHome": "← Trở về Trang chủ",
+    "projects.searchPlaceholder": "Tìm kiếm dự án theo tên hoặc thẻ...",
+    "projects.noResults": "Không tìm thấy dự án nào phù hợp với tiêu chí của bạn.",
+    "projects.category.freeSoftware": "Phần mềm tự do",
+    "projects.category.bot": "Framework Bot",
+    "projects.category.ui": "Thành phần UI",
+    "projects.category.touhou": "Touhou Project",
+    "projects.category.minecraft": "Công cụ Minecraft",
     "projects.items.qtFluentWidgets.name": "Qt-Fluent-Widgets",
     "projects.items.qtFluentWidgets.desc": "Thư viện thành phần Fluent Design cho Qt.",
     "projects.items.pysideFluentWidgetsPro.name": "PySide6-Fluent-Widgets-Pro",
@@ -531,6 +794,12 @@ const messages = {
     "projects.items.EX-FMBE-simulator.desc": "Trình mô phỏng FMBE cho Minecraft Bedrock Edition.",
     "projects.items.BB-CVT-FMBE.name": "BB-CVT-FMBE",
     "projects.items.BB-CVT-FMBE.desc": "Trình chuyển đổi mô hình cho Minecraft Bedrock Edition.",
+    "projects.items.FMBE-Hub.name": "FMBE-Hub",
+    "projects.items.FMBE-Hub.desc": "Bộ sưu tập công cụ FMBE cho Minecraft Bedrock Edition.",
+    "projects.items.Touhou-Chabangeki-Collect.name": "Touhou-Chabangeki-Collect",
+    "projects.items.Touhou-Chabangeki-Collect.desc": "Trang web tổng hợp trà hiệu kịch Touhou Project.",
+    "projects.items.Touhou-translate.name": "Touhou-translate",
+    "projects.items.Touhou-translate.desc": "Dự án dịch thuật và tái đăng tải trà hiệu kịch Touhou Project.",
     "contributors.title": "Người đóng góp",
     "contributors.subtitle": "Những người làm cho mọi thứ trở nên khả thi.",
     "contributors.supportersTitle": "Bạn bè và người ủng hộ",
@@ -561,6 +830,15 @@ const messages = {
     "projects.title": "Основные репозитории",
     "projects.subtitle": "Краткий обзор цифровых достижений нашего святилища.",
     "projects.viewAll": "Смотреть все проекты",
+    "projects.exploreMore": "Детали проекта",
+    "projects.backHome": "← На главную",
+    "projects.searchPlaceholder": "Поиск проектов по имени или тегу...",
+    "projects.noResults": "Проекты, соответствующие вашим критериям, не найдены.",
+    "projects.category.freeSoftware": "Свободное ПО",
+    "projects.category.bot": "Фреймворки для ботов",
+    "projects.category.ui": "UI компоненты",
+    "projects.category.touhou": "Touhou Project",
+    "projects.category.minecraft": "Инструменты Minecraft",
     "projects.items.qtFluentWidgets.name": "Qt-Fluent-Widgets",
     "projects.items.qtFluentWidgets.desc": "Библиотека компонентов Fluent Design для Qt.",
     "projects.items.pysideFluentWidgetsPro.name": "PySide6-Fluent-Widgets-Pro",
@@ -573,6 +851,12 @@ const messages = {
     "projects.items.EX-FMBE-simulator.desc": "Симулятор FMBE для Minecraft Bedrock Edition.",
     "projects.items.BB-CVT-FMBE.name": "BB-CVT-FMBE",
     "projects.items.BB-CVT-FMBE.desc": "Конвертер моделей для Minecraft Bedrock Edition.",
+    "projects.items.FMBE-Hub.name": "FMBE-Hub",
+    "projects.items.FMBE-Hub.desc": "Набор инструментов FMBE для Minecraft Bedrock Edition.",
+    "projects.items.Touhou-Chabangeki-Collect.name": "Touhou-Chabangeki-Collect",
+    "projects.items.Touhou-Chabangeki-Collect.desc": "Сайт-коллекция чайных драм Touhou Project.",
+    "projects.items.Touhou-translate.name": "Touhou-translate",
+    "projects.items.Touhou-translate.desc": "Проект по переводу и репосту чайных драм Touhou Project.",
     "contributors.title": "Участники",
     "contributors.subtitle": "Люди, которые делают всё возможным.",
     "contributors.supportersTitle": "Друзья и сторонники",
@@ -626,6 +910,41 @@ document.addEventListener('DOMContentLoaded', () => {
   const langBtn = document.getElementById('langBtn');
   const langDropdown = document.getElementById('langDropdown');
   const currentLangSpan = document.getElementById('currentLang');
+  const navToggle = document.getElementById('navToggle');
+  const navMenu = document.getElementById('navMenu');
+  const navbar = document.querySelector('.navbar');
+
+  const closeNavMenu = () => {
+    if (!navbar || !navToggle) return;
+    navbar.classList.remove('nav-open');
+    navToggle.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', 'false');
+  };
+
+  if (navMenu) {
+    navMenu.addEventListener('click', (event) => {
+      event.stopPropagation();
+    });
+  }
+
+  if (navToggle && navMenu && navbar) {
+    navToggle.addEventListener('click', (event) => {
+      event.stopPropagation();
+      const willOpen = !navbar.classList.contains('nav-open');
+      navbar.classList.toggle('nav-open', willOpen);
+      navToggle.classList.toggle('open', willOpen);
+      navToggle.setAttribute('aria-expanded', String(willOpen));
+      if (!willOpen && langDropdown) {
+        langDropdown.classList.remove('show');
+      }
+    });
+
+    navMenu.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        closeNavMenu();
+      });
+    });
+  }
 
   if (langBtn && langDropdown) {
     // Toggle dropdown
@@ -637,6 +956,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Close dropdown when clicking outside
     document.addEventListener('click', () => {
       langDropdown.classList.remove('show');
+      closeNavMenu();
     });
 
     // Language option click handlers
@@ -663,6 +983,19 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   }
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth >= 768) {
+      closeNavMenu();
+    }
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      langDropdown?.classList.remove('show');
+      closeNavMenu();
+    }
+  });
 
   // Detect browser language on first visit
   const savedLocale = localStorage.getItem('locale');
@@ -878,15 +1211,21 @@ function updateTranslations() {
 
   // Update all elements with data-i18n attribute
   document.querySelectorAll('[data-i18n]').forEach(el => {
-    const key = el.dataset.i18n;
-    const translation = messages[currentLocale][key];
-    if (translation) {
-      // Check if translation contains HTML
-      if (translation.includes('<')) {
-        el.innerHTML = translation;
+    const key = el.getAttribute('data-i18n');
+    if (messages[currentLocale] && messages[currentLocale][key]) {
+      // If it's an element that might contain inner HTML like span, preserve it
+      if (el.tagName === 'H1' && key === 'hero.title') {
+        el.innerHTML = messages[currentLocale][key];
       } else {
-        el.textContent = translation;
+        el.textContent = messages[currentLocale][key];
       }
+    }
+  });
+
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const key = el.getAttribute('data-i18n-placeholder');
+    if (messages[currentLocale] && messages[currentLocale][key]) {
+      el.placeholder = messages[currentLocale][key];
     }
   });
 
