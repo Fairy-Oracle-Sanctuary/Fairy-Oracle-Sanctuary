@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All Projects | Fairy Oracle Sanctuary</title>
+  <meta name="description" content="Browse all Fairy Oracle Sanctuary projects.">
+  <link rel="icon" type="image/png" sizes="128x128" href="https://res.cloudinary.com/do6rggmy6/image/upload/v1777526682/icon_128X128_hxgexw.png">
+  <link rel="shortcut icon" type="image/png" href="https://res.cloudinary.com/do6rggmy6/image/upload/v1777526682/icon_128X128_hxgexw.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main>
+    <nav class="navbar">
+      <div class="nav-container">
+        <div class="nav-brand">
+          <div class="nav-logo">
+            <img src="https://res.cloudinary.com/do6rggmy6/image/upload/v1777526682/icon_128X128_hxgexw.png" alt="FOS Logo">
+          </div>
+          <a href="index.html" class="nav-title"></a>
+        </div>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navMenu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <div class="nav-menu" id="navMenu">
+          <div class="nav-links">
+            <a href="index.html#values" class="nav-link" data-i18n="nav.values">Values</a>
+            <a href="index.html#projects" class="nav-link" data-i18n="nav.projects">Projects</a>
+            <a href="index.html#contributors" class="nav-link" data-i18n="nav.contributors">Contributors</a>
+          </div>
+          <div class="nav-actions">
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+              <svg class="icon sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="5"/>
+                <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+              </svg>
+              <svg class="icon moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+              </svg>
+            </button>
+            <div class="language-switcher">
+              <button class="lang-btn" id="langBtn">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                </svg>
+                <span id="currentLang">English</span>
+              </button>
+              <div class="lang-dropdown" id="langDropdown">
+                <button class="lang-option active" data-lang="en">English</button>
+                <button class="lang-option" data-lang="zh">中文</button>
+                <button class="lang-option" data-lang="ja">日本語</button>
+                <button class="lang-option" data-lang="ko">한국어</button>
+                <button class="lang-option" data-lang="fr">Français</button>
+                <button class="lang-option" data-lang="es">Español</button>
+                <button class="lang-option" data-lang="pt">Português</button>
+                <button class="lang-option" data-lang="de">Deutsch</button>
+                <button class="lang-option" data-lang="hi">हिन्दी</button>
+                <button class="lang-option" data-lang="tl">Tagalog</button>
+                <button class="lang-option" data-lang="vi">Tiếng Việt</button>
+                <button class="lang-option" data-lang="ru">Русский</button>
+              </div>
+            </div>
+            <div class="nav-social">
+              <a href="https://github.com/Fairy-Oracle-Sanctuary" target="_blank" class="nav-link" aria-label="GitHub">
+                <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+                </svg>
+              </a>
+              <a href="https://discord.gg/TfuNYPsjmQ" target="_blank" class="nav-link" aria-label="Discord">
+                <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5599.0992 18.0578a.0821.0821 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286z"/>
+                  <circle cx="8.5" cy="12.5" r="1.5" fill="var(--background)"/>
+                  <circle cx="15.5" cy="12.5" r="1.5" fill="var(--background)"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <section class="projects all-projects-page" id="projects" style="padding-top: 100px; min-height: 80vh;">
+      <div class="projects-header" style="max-width: 1280px; margin: 0 auto; padding: 0 1rem; display: flex; flex-direction: column; gap: 1.5rem; align-items: stretch;">
+        <div style="display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap;">
+          <div>
+            <h1 class="section-title" data-i18n="projects.title">Core Repositories</h1>
+            <p class="section-subtitle" data-i18n="projects.subtitle" style="margin-bottom: 0;">A glimpse into our sanctuary's digital output.</p>
+          </div>
+          <a href="index.html" class="btn btn-secondary" style="white-space: nowrap;">
+            <span data-i18n="projects.backHome">&larr; Back Home</span>
+          </a>
+        </div>
+        
+        <div class="search-container">
+          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="text" id="projectSearch" class="search-input" data-i18n-placeholder="projects.searchPlaceholder" placeholder="Search projects...">
+        </div>
+      </div>
+      <div class="projects-grid" id="projects-grid" style="max-width: 1280px; margin: 2rem auto; padding: 0 1rem;"></div>
+      
+      <div id="no-results" class="no-results" style="display: none;">
+        <p data-i18n="projects.noResults">No projects found matching your criteria.</p>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <img src="https://res.cloudinary.com/do6rggmy6/image/upload/v1777526682/icon_128X128_hxgexw.png" alt="FOS Logo">
+        </div>
+        <h2 class="footer-title">Fairy Oracle Sanctuary</h2>
+        <p class="footer-quote" data-i18n="footer.quote">"Connect the world, connect every person who believes in freedom and goodwill."</p>
+        <div class="footer-links">
+          <a href="https://github.com/Fairy-Oracle-Sanctuary" target="_blank" data-i18n="footer.github">Github</a>
+          <a href="https://discord.gg/TfuNYPsjmQ" target="_blank" data-i18n="footer.discord">Discord</a>
+          <a href="http://fosdocs.k2cro4.top/" target="_blank" data-i18n="footer.manifesto">Manifesto</a>
+        </div>
+        <p class="footer-copyright" id="copyright"></p>
+      </div>
+    </footer>
+  </main>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
