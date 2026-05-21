@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://res.cloudinary.com/do6rggmy6/image/upload/v1777526682/logo_1080P_fenwbe.png" alt="logo" width="200"/>
+  <img src="https://res.cloudinary.com/do6rggmy6/image/upload/v1779375250/logo_gkqzby.png" alt="logo" width="200"/>
 </p>
 
 <h1 align="center">
@@ -62,6 +62,8 @@ npm run build
 ## 许可证
 
 内容与代码在适当的开源许可证下发布。具体许可证请参阅各仓库。
+
+**图片资源**: 本项目中的所有图片和视觉素材均采用 [CC BY-SA 4.0](LICENSE-PICTURE) (署名-相同方式共享 4.0 国际) 许可证。
 
 ---
 

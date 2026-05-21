@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://res.cloudinary.com/do6rggmy6/image/upload/v1777526682/logo_1080P_fenwbe.png" alt="logo" width="200"/>
+  <img src="https://res.cloudinary.com/do6rggmy6/image/upload/v1779375250/logo_gkqzby.png" alt="logo" width="200"/>
 </p>
 
 <h1 align="center">
@@ -62,6 +62,8 @@ This site is automatically deployed to GitHub Pages via GitHub Actions.
 ## License
 
 Content and code are released under appropriate open-source licenses. See individual repositories for details.
+
+**Image Resources**: All images and visual assets in this project are licensed under [CC BY-SA 4.0](LICENSE-PICTURE) (Attribution-ShareAlike 4.0 International).
 
 ---
 
