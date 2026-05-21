@@ -1151,7 +1151,7 @@ const supportersData = [
   { name: "QingQingHan(China)", image: "images/contributors/qqh.jpg" },
   { name: "awedwd(China)", image: "images/contributors/awedwd.jpg" },
   { name: "AI(China)", image: "images/contributors/ai.png" },
-  { name: "jeanmajid(British)", image: "images/contributors/jeanmajid.webp" },
+  { name: "jeanmajid(Germany)", image: "images/contributors/jeanmajid.webp" },
   { name: "Base(Japan)", image: "images/contributors/base.webp" },
   { name: "Strs2(Japan)", image: "images/contributors/strs2.webp" },
   { name: "Vi(Vietnam)", image: "images/contributors/vi.webp" },
