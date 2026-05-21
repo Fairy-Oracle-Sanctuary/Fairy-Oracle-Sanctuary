@@ -1117,17 +1117,30 @@ const contributorsData = [
   { login: "LiFyrid" },
   { login: "Happy2018New" },
   { login: "EasonMDR" },
+  { name: "菠萝壹", bilibili: "34367536", image: "images/contributors/dbly.jpg" },
 ];
 
 function renderContributors() {
   const grid = document.getElementById('contributors-grid');
   if (!grid) return;
 
-  grid.innerHTML = contributorsData.map(c => `
-    <a href="https://github.com/${c.login}" target="_blank" class="contributor-avatar" data-tooltip="${c.login}">
-      <img src="https://avatars.githubusercontent.com/${c.login}" alt="${c.login}" loading="lazy">
-    </a>
-  `).join('');
+  grid.innerHTML = contributorsData.map(c => {
+    if (c.bilibili) {
+      // Bilibili account
+      return `
+        <a href="https://space.bilibili.com/${c.bilibili}" target="_blank" class="contributor-avatar" data-tooltip="${c.name}">
+          <img src="${c.image}" alt="${c.name}" loading="lazy">
+        </a>
+      `;
+    } else {
+      // GitHub account
+      return `
+        <a href="https://github.com/${c.login}" target="_blank" class="contributor-avatar" data-tooltip="${c.login}">
+          <img src="https://avatars.githubusercontent.com/${c.login}" alt="${c.login}" loading="lazy">
+        </a>
+      `;
+    }
+  }).join('');
 }
 
 // Supporters data - Discord friends who share our spirit
