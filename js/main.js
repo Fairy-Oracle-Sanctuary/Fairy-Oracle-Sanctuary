@@ -646,7 +646,7 @@ const messages = {
     "nav.projects": "परियोजनाएँ",
     "nav.contributors": "योगदानकर्ता",
     "hero.title": 'Connect The World with <span class="accent underline">Goodwill</span>',
-    "hero.description": "天机阁 (Fairy Oracle Sanctuary) एक डेवलपर सामूहिक है जिसका मूल स्वतंत्र सॉफ्टवेयर की भावना है और ओपन-सोर्स सहयोग इसकी विधि है।",
+    "hero.description": "天机阁 (Fairy Oracle Sanctuary) एक डेवलपर सामूहिक है जिसका मूल स्वतंत्र सॉफ़्टवेयर की भावना है और ओपन-सोर्स सहयोग इसकी विधि है, और यह Touhou Project का एक फैन सर्कल भी है।",
     "hero.exploreButton": "रिपॉजिटरी खोजें",
     "hero.manifestoButton": "हमारा घोषणापत्र",
     "hero.discordButton": "Discord से जुड़ें",
