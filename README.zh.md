@@ -12,7 +12,7 @@
 <a href="README.md">English</a> | <a href="README.zh.md">简体中文</a></a> 
 </p>
 
-🌐 **在线访问**: [https://fairy-oracle-sanctuary.github.io/Fairy-Oracle-Sanctuary/](https://fairy-oracle-sanctuary.github.io/Fairy-Oracle-Sanctuary/)
+🌐 **在线访问**: [https://fairy.ora-san.org/](https://fairy.ora-san.org/)
 
 ## 关于我们
 
