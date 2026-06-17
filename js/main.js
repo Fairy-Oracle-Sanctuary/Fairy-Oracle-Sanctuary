@@ -1,6 +1,13 @@
 // Project data - add new projects here
 const projectsData = [
   {
+    id: 'kekkaiWorkshop',
+    url: 'https://fkw.ora-san.org/',
+    image: 'https://res.cloudinary.com/do6rggmy6/image/upload/v1777485917/kekkaiWorkshop_gbpg4k.png',
+    tags: ['Video', 'Localization', 'AI', 'Automation'],
+    category: 'free-software'
+  },
+  {
     id: 'qtFluentWidgets',
     url: 'https://github.com/Fairy-Oracle-Sanctuary/Qt-Fluent-Widgets',
     image: 'https://res.cloudinary.com/do6rggmy6/image/upload/v1777485902/qtFluentWidgets_qeb25t.png',
@@ -13,13 +20,6 @@ const projectsData = [
     image: 'https://res.cloudinary.com/do6rggmy6/image/upload/v1777485867/pysideFluentWidgetsPro_eido2b.png',
     tags: ['Python', 'PySide6', 'UI'],
     category: 'ui'
-  },
-  {
-    id: 'kekkaiWorkshop',
-    url: 'https://github.com/Fairy-Oracle-Sanctuary/Touhou-translate',
-    image: 'https://res.cloudinary.com/do6rggmy6/image/upload/v1777485917/kekkaiWorkshop_gbpg4k.png',
-    tags: ['Video', 'Localization', 'AI', 'Automation'],
-    category: 'free-software'
   },
   {
     id: 'neoBotFramework',
