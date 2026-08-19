@@ -1180,7 +1180,6 @@ const supportersData = [
   { name: "AxisesEMG(China)", image: "images/contributors/axisesemg.jpg" },
   { name: "Saloth Sar(China)", image: "images/contributors/salothsar.jpg" },
   { name: "Pea Smoothie(China)", image: "images/contributors/peasmoothie.jpg" },
-  { name: "QingQingHan(China)", image: "images/contributors/qqh.jpg" },
   { name: "awedwd(China)", image: "images/contributors/awedwd.jpg" },
   { name: "AI(China)", image: "images/contributors/ai.png" },
   { name: "Starry July Sorrow(China)", image: "images/contributors/star.jpg" },
