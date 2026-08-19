@@ -244,6 +244,9 @@ const messages = {
     "contributors.subtitle": "The people who make it all possible.",
     "contributors.supportersTitle": "Friends & Supporters",
     "contributors.supportersSubtitle": "Those who share our spirit, even without code.",
+    "contributors.sponsorsTitle": "Sponsors",
+    "contributors.sponsorsSubtitle": "Those who support us on Afdian (爱发电) — thank you for keeping us going.",
+    "contributors.sponsorsEmpty": "No sponsors yet. Be the first to support us on Afdian!",
     "contributors.thanksTitle": "Special Thanks",
     "contributors.thanksSubtitle": "Organizations and communities that inspire and support us.",
     "footer.quote": '"Connect the world, connect every person who believes in freedom and goodwill."',
@@ -305,6 +308,9 @@ const messages = {
     "contributors.subtitle": "让一切成为可能的人们",
     "contributors.supportersTitle": "朋友与支持者",
     "contributors.supportersSubtitle": "即便没有代码贡献，也与我们精神同在",
+    "contributors.sponsorsTitle": "赞助名单",
+    "contributors.sponsorsSubtitle": "通过爱发电支持我们的朋友们，感谢你们让我们继续前行。",
+    "contributors.sponsorsEmpty": "还没有赞助者，要不要来当第一个？",
     "contributors.thanksTitle": "特别感谢",
     "contributors.thanksSubtitle": "启发和支持我们的组织与社区",
     "footer.quote": '"连接世界，连接每一个相信自由与善意的人。"',
@@ -366,6 +372,9 @@ const messages = {
     "contributors.subtitle": "すべてを可能にする人々。",
     "contributors.supportersTitle": "友人 ＆ サポーター",
     "contributors.supportersSubtitle": "コードがなくても私たちの精神を共有する人々。",
+    "contributors.sponsorsTitle": "スポンサー",
+    "contributors.sponsorsSubtitle": "愛発電 (Afdian) で支援してくださる皆さん、ありがとうございます。",
+    "contributors.sponsorsEmpty": "まだスポンサーはいません。最初のスポンサーになりませんか？",
     "contributors.thanksTitle": "スペシャルサンクス",
     "contributors.thanksSubtitle": "私たちにインスピレーションとサポートを与えてくれる組織とコミュニティ。",
     "footer.quote": '“世界を繋ぎ、自由と善意を信じるすべての人を繋ぐ。”',
@@ -427,6 +436,9 @@ const messages = {
     "contributors.subtitle": "이 모든 것을 가능하게 하는 사람들.",
     "contributors.supportersTitle": "친구 및 후원자",
     "contributors.supportersSubtitle": "코드 없이도 우리의 정신을 공유하는 사람들.",
+    "contributors.sponsorsTitle": "스폰서",
+    "contributors.sponsorsSubtitle": "아프디안(Afdian)으로 지원해 주시는 분들, 계속 나아갈 수 있게 해주셔서 감사합니다.",
+    "contributors.sponsorsEmpty": "아직 스폰서가 없습니다. Afdian에서 첫 번째로 후원해 주세요!",
     "contributors.thanksTitle": "특별 감사",
     "contributors.thanksSubtitle": "우리에게 영감과 지지를 주는 조직과 커뮤니티.",
     "footer.quote": '“세상을 연결하고, 자유와 선의를 믿는 모든 사람을 연결합니다.”',
@@ -488,6 +500,9 @@ const messages = {
     "contributors.subtitle": "Ceux qui rendent tout cela possible.",
     "contributors.supportersTitle": "Amis & Soutiens",
     "contributors.supportersSubtitle": "Ceux qui partagent notre esprit, même sans code.",
+    "contributors.sponsorsTitle": "Sponsors",
+    "contributors.sponsorsSubtitle": "Ceux qui nous soutiennent sur Afdian — merci de nous aider à continuer.",
+    "contributors.sponsorsEmpty": "Pas encore de sponsors. Soyez le premier à nous soutenir sur Afdian !",
     "contributors.thanksTitle": "Remerciements spéciaux",
     "contributors.thanksSubtitle": "Organisations et communautés qui nous inspirent et nous soutiennent.",
     "footer.quote": '"Connecter le monde, connecter chaque personne qui croit en la liberté et la bonne volonté."',
@@ -549,6 +564,9 @@ const messages = {
     "contributors.subtitle": "Las personas que hacen todo posible.",
     "contributors.supportersTitle": "Amigos y colaboradores",
     "contributors.supportersSubtitle": "Quienes comparten nuestro espíritu, incluso sin código.",
+    "contributors.sponsorsTitle": "Patrocinadores",
+    "contributors.sponsorsSubtitle": "Quienes nos apoyan en Afdian — gracias por ayudarnos a seguir.",
+    "contributors.sponsorsEmpty": "Aún no hay patrocinadores. ¡Sé el primero en apoyarnos en Afdian!",
     "contributors.thanksTitle": "Agradecimientos especiales",
     "contributors.thanksSubtitle": "Organizaciones y comunidades que nos inspiran y apoyan.",
     "footer.quote": '"Conectar el mundo, conectar a cada persona que cree en la libertad y la buena voluntad."',
@@ -610,6 +628,9 @@ const messages = {
     "contributors.subtitle": "As pessoas que tornam tudo possível.",
     "contributors.supportersTitle": "Amigos e apoiadores",
     "contributors.supportersSubtitle": "Aqueles que compartilham nosso espírito, mesmo sem código.",
+    "contributors.sponsorsTitle": "Patrocinadores",
+    "contributors.sponsorsSubtitle": "Aqueles que nos apoiam no Afdian — obrigado por nos manter em frente.",
+    "contributors.sponsorsEmpty": "Ainda não há patrocinadores. Seja o primeiro a nos apoiar no Afdian!",
     "contributors.thanksTitle": "Agradecimentos especiais",
     "contributors.thanksSubtitle": "Organizações e comunidades que nos inspiram e apoiam.",
     "footer.quote": '"Conectar o mundo, conectar cada pessoa que acredita na liberdade e na boa vontade."',
@@ -671,6 +692,9 @@ const messages = {
     "contributors.subtitle": "Die Menschen, die alles möglich machen.",
     "contributors.supportersTitle": "Freunde & Unterstützer",
     "contributors.supportersSubtitle": "Diejenigen, die unseren Geist teilen, auch ohne Code.",
+    "contributors.sponsorsTitle": "Sponsoren",
+    "contributors.sponsorsSubtitle": "Diejenigen, die uns auf Afdian unterstützen — danke, dass ihr uns am Laufen haltet.",
+    "contributors.sponsorsEmpty": "Noch keine Sponsoren. Unterstützen Sie uns als Erste auf Afdian!",
     "contributors.thanksTitle": "Besonderer Dank",
     "contributors.thanksSubtitle": "Organisationen und Gemeinschaften, die uns inspirieren und unterstützen.",
     "footer.quote": '"Die Welt verbinden, jeden Menschen verbinden, der an Freiheit und guten Willen glaubt."',
@@ -732,6 +756,9 @@ const messages = {
     "contributors.subtitle": "वे लोग जो सब कुछ संभव बनाते हैं।",
     "contributors.supportersTitle": "मित्र और समर्थक",
     "contributors.supportersSubtitle": "वे लोग जो बिना कोड के भी हमारी भावना साझा करते हैं।",
+    "contributors.sponsorsTitle": "प्रायोजक",
+    "contributors.sponsorsSubtitle": "Afdian पर हमारा समर्थन करने वालों, हमें आगे बढ़ाते रहने के लिए धन्यवाद।",
+    "contributors.sponsorsEmpty": "अभी कोई प्रायोजक नहीं है। Afdian पर हमारा समर्थन करने वाले पहले बनें!",
     "contributors.thanksTitle": "विशेष आभार",
     "contributors.thanksSubtitle": "संगठन और समुदाय जो हमें प्रेरित और समर्थन देते हैं।",
     "footer.quote": '"दुनिया को जोड़ें, हर उस व्यक्ति को जोड़ें जो स्वतंत्रता और सद्भावना में विश्वास करता है।"',
@@ -793,6 +820,9 @@ const messages = {
     "contributors.subtitle": "Ang mga taong nagpapaging posible sa lahat.",
     "contributors.supportersTitle": "Mga kaibigan at tagasuporta",
     "contributors.supportersSubtitle": "Ang mga nagbabahagi ng aming diwa, kahit walang code.",
+    "contributors.sponsorsTitle": "Mga sponsor",
+    "contributors.sponsorsSubtitle": "Sa mga sumusuporta sa amin sa Afdian — salamat sa patuloy na suporta.",
+    "contributors.sponsorsEmpty": "Wala pang sponsor. Maging unang sumuporta sa amin sa Afdian!",
     "contributors.thanksTitle": "Espesyal na pasasalamat",
     "contributors.thanksSubtitle": "Mga organisasyon at komunidad na nagbibigay inspirasyon at suporta sa amin.",
     "footer.quote": '"Iugnay ang mundo, iugnay ang bawat taong naniniwala sa kalayaan at mabuting kalooban."',
@@ -854,6 +884,9 @@ const messages = {
     "contributors.subtitle": "Những người làm cho mọi thứ trở nên khả thi.",
     "contributors.supportersTitle": "Bạn bè và người ủng hộ",
     "contributors.supportersSubtitle": "Những người chia sẻ tinh thần của chúng tôi, ngay cả khi không có mã.",
+    "contributors.sponsorsTitle": "Nhà tài trợ",
+    "contributors.sponsorsSubtitle": "Cảm ơn những người đã ủng hộ chúng tôi trên Afdian, giúp chúng tôi tiếp tục.",
+    "contributors.sponsorsEmpty": "Chưa có nhà tài trợ nào. Hãy là người đầu tiên ủng hộ chúng tôi trên Afdian!",
     "contributors.thanksTitle": "Lời cảm ơn đặc biệt",
     "contributors.thanksSubtitle": "Các tổ chức và cộng đồng truyền cảm hứng và hỗ trợ chúng tôi.",
     "footer.quote": '"Kết nối thế giới, kết nối mỗi người tin vào tự do và thiện chí."',
@@ -915,6 +948,9 @@ const messages = {
     "contributors.subtitle": "Люди, которые делают всё возможным.",
     "contributors.supportersTitle": "Друзья и сторонники",
     "contributors.supportersSubtitle": "Те, кто разделяет наш дух, даже без кода.",
+    "contributors.sponsorsTitle": "Спонсоры",
+    "contributors.sponsorsSubtitle": "Тем, кто поддерживает нас на Afdian — спасибо, что помогаете нам двигаться дальше.",
+    "contributors.sponsorsEmpty": "Спонсоров пока нет. Станьте первым, кто поддержит нас на Afdian!",
     "contributors.thanksTitle": "Особая благодарность",
     "contributors.thanksSubtitle": "Организации и сообщества, которые вдохновляют и поддерживают нас.",
     "footer.quote": '"Соединять мир, соединять каждого, кто верит в свободу и добрую волю."',
@@ -1104,6 +1140,8 @@ document.addEventListener('DOMContentLoaded', () => {
   renderSupporters();
   // Render thanks
   renderThanks();
+  // Render sponsors (Afdian)
+  renderSponsors();
   // Particle background
   initParticles();
 
@@ -1259,6 +1297,43 @@ function renderThanks() {
       `;
     }
   }).join('');
+}
+
+// Sponsors - fetched from the Afdian (爱发电) API via the Cloudflare Pages Function /api/sponsors
+const AFDIAN_SPONSOR_URL = 'https://ifdian.net/a/Fairy_ora_san';
+
+async function renderSponsors() {
+  const grid = document.getElementById('sponsors-grid');
+  if (!grid) return;
+
+  const showEmpty = () => {
+    const text = (messages[currentLocale] && messages[currentLocale]['contributors.sponsorsEmpty']) ||
+      'No sponsors yet. Be the first to support us on Afdian!';
+    grid.innerHTML = `<div class="sponsors-empty" data-i18n="contributors.sponsorsEmpty">${text}</div>`;
+  };
+
+  try {
+    const res = await fetch('/api/sponsors');
+    const data = await res.json();
+    const list = data && data.data && data.data.list;
+    if (!list || !list.length) {
+      showEmpty();
+      return;
+    }
+    grid.innerHTML = list.map(s => `
+      <a href="${AFDIAN_SPONSOR_URL}" target="_blank" class="contributor-avatar supporter" data-tooltip="${escapeHtml(s.user.name)}">
+        <img src="${s.user.avatar}" alt="${escapeHtml(s.user.name)}" loading="lazy">
+      </a>
+    `).join('');
+  } catch (e) {
+    showEmpty();
+  }
+}
+
+function escapeHtml(str) {
+  return String(str).replace(/[&<>"']/g, c => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+  }[c]));
 }
 
 // Scroll-triggered animations for project cards
