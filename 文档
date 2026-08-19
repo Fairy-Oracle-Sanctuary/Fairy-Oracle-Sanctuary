@@ -1,0 +1,588 @@
+爱发电提供了 Webhook 、 API 和 OAuth2.0 三种方式为开发者提供便利
+Webhook
+
+需要在开发者后台配置通知地址
+每当有订单时，平台会请求开发者配置的url（如果服务器异常，可能不保证能及时推送，因此建议结合API一起使用）
+API
+
+该功能需要开发者主动请求爱发电平台，目前可查询历史订单和赞助的人。
+涉及到的 user_id、api token 可在开发者后台找到对应配置。
+
+OAuth2 关联授权
+该功能需要向官方申请权限，具体看下面
+用户授权使用爱发电信息到开发者应用，配合 Webhook 与 API实现更便捷的自动化
+
+
+
+
+Webhook
+说明
+此功能会将开发者相关的订单打给配置好的url，同时要求开发者返回固定结构，以明确表示成功收到回调。（不排除以后在异常时会重复请求，因此建议做幂等逻辑，支持重复推送）平台请求开发者配置的URL数据示例，目前 data.type 仅为 order ，data.order 对象具体订单字段见最下方解释
+{
+  "ec": 200,
+  "em": "ok",
+  "data": {
+    "type": "order",
+    "order": {
+      "out_trade_no": "2021062321XXX1083454010626",
+      "custom_order_id": "Steam12345",
+      "user_id": "adf397fe83748XXXcee52540025c377",
+      "user_private_id":"fdf981fu8f7g891euaceXXX430321c377",
+      "plan_id": "a45353328af91XXX052540025c377",
+      "month": 1,
+      "total_amount": "5.00",
+      "show_amount": "5.00",
+      "status": 2,
+      "remark": "",
+      "redeem_id": "",
+      "product_type": 0,
+      "discount": "0.00",
+      "sku_detail": [{
+        "sku_id": "b082342c4aba1XXX5cb52540025c377",
+        "count": 1,
+        "name": "15000 赏金/货币 兑换码",
+        "album_id": "",
+        "pic": "https://pic1.afdiancdn.com/user/8a8e408a3aeb11eab26352540025c377/common/sfsfsff.jpg"
+      }],
+      "address_person": "",
+      "address_phone": "",
+      "address_address": ""
+    }
+  }
+}
+
+要求开发者响应的JSON示例，如果接口不返回ec 200 ，则平台认为回调失败 
+
+{"ec":200,"em":""} 
+
+
+注明：其中包括custom_order_id等部分字段可由前端URL传参，具体请参考：  爱发电开发者功能汇总: API与Webhook接口 、OAuth2 、网页嵌入
+
+
+
+签名介绍
+公钥
+-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwwdaCg1Bt+UKZKs0R54y
+lYnuANma49IpgoOwNmk3a0rhg/PQuhUJ0EOZSowIC44l0K3+fqGns3Ygi4AfmEfS
+4EKbdk1ahSxu7Zkp2rHMt+R9GarQFQkwSS/5x1dYiHNVMiR8oIXDgjmvxuNes2Cr
+8fw9dEF0xNBKdkKgG2qAawcN1nZrdyaKWtPVT9m2Hl0ddOO9thZmVLFOb9NVzgYf
+jEgI+KWX6aY19Ka/ghv/L4t1IXmz9pctablN5S0CRWpJW3Cn0k6zSXgjVdKm4uN7
+jRlgSRaf/Ind46vMCm3N2sgwxu/g3bnooW+db0iLo13zzuvyn727Q3UDQ0MmZcEW
+MQIDAQAB
+-----END PUBLIC KEY-----
+签名数据由发送数据中order中的out_trade_no、user_id、plan_id、total_amount，依次拼接成的字符串sign_str
+// sign_str为需要签名的数据
+// sign为发送数据中的sign
+public function verifySign($sign_str, $sign){
+
+    $publicKey = "上面的公钥";
+    $key = openssl_get_publickey($publicKey);
+    return openssl_verify($sign_str, base64_decode($sign), $key, 'SHA256');
+}
+样例，sign就是签名字段
+
+{
+  "ec": 200,
+  "em": "ok",
+  "data": {
+    "type": "order",
+    "order": {
+      "out_trade_no": "20210623213XXX83454010626",
+      "user_id": "adf397fe83748XXXcee52540025c377",
+      "plan_id": "a45353328af91XXX73052540025c377",
+      "month": 1,
+      "total_amount": "5.00",
+      "show_amount": "5.00",
+      "status": 2,
+      "remark": "",
+      "redeem_id": "",
+      "product_type": 0,
+      "discount": "0.00",
+      "sku_detail": [],
+      "address_person": "",
+      "address_phone": "",
+      "address_address": ""
+    },
+    "sign": "xxxxxxxx"
+  }
+}
+
+
+
+
+API
+当前功能需要用到 user_id 和 生成的API Token，以下简称 token。请求平台时可以为form表单或者json，平台返回的数据为json。
+
+
+
+签名介绍
+为了保证数据安全与灵活性，平台做了一个简单的签名逻辑。平台接收的参数如下。 
+
+user_id: 上面的 user_id，表明你是谁
+params: 具体接口传参的json字符串
+ts: 发出请求时秒级时间戳
+sign: 针对上面3个数据的签名，防止伪造数据。
+
+sign 的计算规则为：md5(token+请求数据按key排序拼接key和value)
+
+具体到这次场景，参数key为固定值，只有上面四个字段 sign 签名可以简化为
+sign = md5({token}params{params}ts{ts}user_id{user_id})
+{}包的数据为具体数值
+
+
+示例
+
+假设当前数据如下
+user_id abc
+params  {"a":333}
+ts      1624339905
+token   123        注意这个不传递到服务端，仅参与签名计算
+
+sign = md5('123params{"a":333}ts1624339905user_idabc')
+
+sign = a4acc28b81598b7e5d84ebdc3e91710c
+
+注意token直接写具体值，其它参数写kv，没有任何连接字符，直接拼接
+
+
+JSON请求示例 
+
+{"user_id":"abc", "params": "{\"a\":333}", "ts": 1624339905, "sign":"a4acc28b81598b7e5d84ebdc3e91710c"}
+
+
+检验签名是否准确
+
+https://ifdian.net/api/open/ping 可用postman或其他工具请求测试接口。如果接口返回 ec = 200，则证明签名校验通过。如果签名不通过，会返回拼接的字符串，方便检查不通过的原因。比如下面这种场景就是签名不正确。可以直接复制里面的 debug.kv_string，离线计算sign值。如果token为123，由于签名计算规则为 sign=md5(tokenkv_string)，可以很方便的校验传参是否正确。
+
+{
+    "ec": 400005,
+    "em": "sign validation failed",
+    "data": {
+        "explain": "plz check the desc",
+        "debug": {
+            "kv_string": "params{\"a\":333}ts1636732646user_idxxxxx"
+        },
+        "request": {
+            "user_id": "xxxxxxx",
+            "params": "{\"a\":333}",
+            "ts": 1636732646,
+            "sign": "a9fc8cafd2c1e290cac00fc26f38e2d"
+        }
+    }
+}
+
+
+下面是ts过期的情况 
+
+{
+    "ec": 400002,
+    "em": "time was expired",
+    "data": {
+        "explain": "ts is outdated, 3600s latency was allowed"
+    }
+}
+
+
+如果返回 ec 为 200，类似下面结构，说明没问题。 
+
+{
+    "ec": 200,
+    "em": "pong",
+    "data": {
+        "uid": "xxxxxxx",
+        "request": {
+            "user_id": "xxxxxxx",
+            "params": "{\"a\":333}",
+            "ts": 1636732646,
+            "sign": "a9fc8cafd2c1e2902cac00fc26f38e2d"
+        }
+    }
+}
+
+
+ec 字段异常错误码
+
+400001  params incomplete
+400002  time was expired
+400003  params was not valid json string
+400004  no valid token found
+400005  sign validation failed
+
+
+具体接口列表
+https://ifdian.net/api/open/query-order
+可传的参数为
+
+
+参数名: page
+
+含义: 按页数倒序获取订单，按订单创建时间倒序 
+
+示例: 1 2 3累加
+
+
+
+参数名: out_trade_no
+
+含义: 指定订单号查询信息，如需要查多个，则英文逗号分隔
+
+示例: 222225555,2222222666
+
+
+
+参数为 page 可传 1,2,3 等（以后会支持传时间查询）即请求参数 params 的值为 {"page":1}
+
+支持传参 per_page 默认50，支持1-100
+
+当前按订单创建时间倒序，每页50条数据返回数据结构示例
+
+【注意层级和 webhook 结构有不同，这里的 order 对象是放到 list 里的】，具体订单含义见最下方解释
+
+{
+  "ec": 200,
+  "em": "",
+  "data": {
+    "list": [{
+      "out_trade_no": "202106232138371083454010626",
+      "custom_order_id": "Steam12345",
+      "user_id": "adf397fe8374811eaacee52540025c377",
+      "user_private_id":"33这个是每个用户唯一的，相当于微信的 unionid",
+      "plan_id": "a45353328af911eb973052540025c377",
+      "month": 1,
+      "total_amount": "5.00",
+      "show_amount": "5.00",
+      "status": 2,
+      "remark": "",
+      "redeem_id": "",
+      "product_type": 0,
+      "discount": "0.00",
+      "sku_detail": [{
+        "sku_id": "b082342c4aba11ebb5cb52540025c377",
+        "count": 1,
+        "name": "15000 赏金/货币 兑换码",
+        "album_id": "",
+        "pic": "https://pic1.afdiancdn.com/user/8a8e408a3aeb11eab26352540025c377/common/sfsfsff.jpg"
+      }],
+      "address_person": "",
+      "address_phone": "",
+      "address_address": ""
+    }],
+    "total_count": 167,
+    "total_page":11
+  }
+}
+
+
+查赞助者
+https://ifdian.net/api/open/query-sponsor
+
+参数为 page 可传 1,2,3 等即请求参数 params 的值为 {"page":1}当前按建立关系时间倒序，每页20个返回结构示例
+
+支持传参 per_page 默认20，支持1-100
+
+支持传参 user_id ，可以查询指定用户的赞助情况，如果需要传多个请使用英文逗号分隔
+
+{
+  "ec": 200,
+  "em": "",
+  "data": {
+    "total_count": 14,
+    "total_page": 2,
+    "list": [
+      {
+        "sponsor_plans": [],
+        "current_plan": {
+          "name": ""
+        },
+        "all_sum_amount": "0.00",
+        "create_time": 1581011280,
+        "last_pay_time": 1598852327,
+        "user": {
+          "user_id": "3524370d11e8ae8852540025c377",
+          "name": "Hee",
+          "avatar": "https://pic1.afdiancdn.com/user/27f7sss7/avatar/2d9659585fc4798068efbb652e56c08a.jpg"
+        }
+      },
+      {
+        "sponsor_plans": [
+          {
+            "plan_id": "sdfsf",
+            "rank": 0,
+            "user_id": "34343",
+            "status": 3,
+            "name": "独立永久方案",
+            "pic": "",
+            "desc": "啊1；",
+            "price": "1.00",
+            "update_time": 1621084278,
+            "pay_month": 1,
+            "show_price": "1.00",
+            "independent": 1,
+            "permanent": 1,
+            "can_buy_hide": 0,
+            "need_address": 0,
+            "product_type": 0,
+            "sale_limit_count": -1,
+            "need_invite_code": false,
+            "expire_time": 2114352000,
+            "sku_processed": [],
+            "rankType": 21
+          }
+        ],
+        "current_plan": {
+          "plan_id": "sdfsfsf",
+          "rank": 0,
+          "user_id": "3453535",
+          "status": 3,
+          "name": "独立永久方案",
+          "pic": "",
+          "desc": "啊1；",
+          "price": "1.00",
+          "update_time": 1621084278,
+          "pay_month": 1,
+          "show_price": "1.00",
+          "independent": 1,
+          "permanent": 1,
+          "can_buy_hide": 0,
+          "need_address": 0,
+          "product_type": 0,
+          "sale_limit_count": -1,
+          "need_invite_code": false,
+          "expire_time": 2114352000,
+          "sku_processed": [],
+          "rankType": 21
+        },
+        "all_sum_amount": "13.00",
+        "first_pay_time": 1576776221,
+        "last_pay_time": 1581083107,
+        "user": {
+          "user_id": "sfff",
+          "name": "sfsf：十五种幸福（新版）",
+          "avatar": "https://pic1.afdiancdn.com/user/sdfsfsf/avatar/c13b6125cbd9fbe7810c79256df1f5b2_w4032_h3024_s3215.jpeg"
+        }
+      }
+    ]
+  }
+}
+
+
+字段说明
+订单
+
+total_count     赞助者总数
+total_page      页数，默认每页50条，请求时，传 page ，curr_page < total_page则可继续请求
+
+out_trade_no 订单号
+custom_order_id 自定义信息
+user_id 下单用户ID
+plan_id 方案ID，如自选，则为空
+title 订单描述
+month 赞助月份
+total_amount 真实付款金额，如有兑换码，则为0.00
+show_amount 显示金额，如有折扣则为折扣前金额
+status 2 为交易成功。目前仅会推送此类型
+remark 订单留言
+redeem_id 兑换码ID
+product_type 0表示常规方案 1表示售卖方案
+discount 折扣
+sku_detail 如果为售卖类型，以数组形式表示具体型号
+address_person 收件人
+address_phone 收件人电话
+address_address 收件人地址
+
+
+赞助者
+
+total_count     赞助者总数
+total_page      页数，默认每页20条，请求时，传 page ，curr_page < total_page则可继续请求
+
+sponsor_plans    []数组类型，具体节点为多个赞助方案。
+current_plan     当前赞助方案，如果节点仅有 name:""，不包含其它内容时，表示无方案
+all_sum_amount   累计赞助金额，此处为折扣前金额。如有兑换码，则此处为虚拟金额，回比实际提现的多
+create_time      int 秒级时间戳，表示成为赞助者的时间，即首次赞助时间
+last_pay_time    int 秒级时间戳，最近一次赞助时间
+
+user 节点表示用户属性
+user_id    用户唯一ID
+name        昵称，非唯一，可重复
+avatar    头像
+
+
+OAuth2 关联授权
+接入方需要提供 应用名称、可信域名和 clientSecret（如不提供官方将随机生成）
+官方会告知你的 clientID 和 clientSecret
+
+
+请联系官方私信申请->
+
+格式如下：
+
+您好，我想申请 OAuth2 功能
+
+应用名称：
+
+应用用途：
+
+可信域名：
+
+clientSecret：
+
+（私信前，如果您还没有认证，麻烦点此认证一下，这样沟通效率更高)
+
+
+整体流程
+授权登录目前支持 authorization_code 模式，适用于拥有 server 端的应用授权。
+
+该模式整体流程为：
+
+1. 第三方发起授权登录请求，显示一个授权登录页面，显示对应的图标和应用名称（如果用户没有登录会跳转登录，成功后返回页面）
+https://ifdian.net/oauth2/authorize?response_type=code&scope=basic&client_id=yourclientid&redirect_uri=urlencodedhttp&state=111
+标记部分替换为你自己的数据。为了方便测试，目前回调地址支持 http、https，线上使用请使用 https 保证数据传输安全。state 用来做安全校验。
+
+
+2. 用户点击同意，重定向到 redirect_uri，会携带 code 和 state。用户拒绝则不会发生重定向
+
+3. 第三方客户端请求服务器，根据 code 换取 access_token，此时会返回 user_id
+ 
+获取用户ID
+注意：为了安全请务必服务端调用该接口，并且走https协议
+secret请仅保存到服务端，如有泄露，请第一时间联系官方进行重置。 
+https://ifdian.net/api/oauth2/access_token
+
+form 表单形式POST提交：
+grant_type | authorization_code | 必填，固定值
+client_id | 分配的client_id | 必填 
+client_secret | 分配的密钥 | 必填 
+
+code | 上个流程返回的 code | 必填 
+
+redirect_uri | 注意仍然填写之前的重定向地址，用来核对数据（这里不需要手动encode） | 必填
+
+
+返回 ec em data 结构，仅当 ec 200时表示成功 
+
+{
+  "ec":200,
+  "em":"ok",
+  "data":  
+      {  
+          "user_id": "网站的用户ID",  
+          "user_private_id": "同openapi的 user_private_id，如尚未用到，忽略即可",
+          "name": "昵称", 
+          "avatar": "头像"
+   }
+}
+
+
+
+
+更新 （2025年5月14日）
+根据订单号查询随机自动回复
+
+接口：https://ifdian.net/api/open/query-random-reply 
+
+参数：out_trade_no，指定订单号查询信息，如需要查多个，则英文逗号分隔
+
+返回数据：
+
+{
+    "ec": 200,
+    "em": "success",
+    "data": {
+        "list": [{
+            "out_trade_no": "202505141538455397541020050",
+            "content": "999"
+        }]
+    }
+}
+
+
+通过API 填入随机自动回复 （补货、发码等功能）
+
+接口： /api/open/update-plan-reply
+
+参数：
+
+plan_id 方案id
+
+sku_id 型号id
+
+二选一，如果是更新订阅方案，传plan_id，如果是更新商品，需要传sku_id
+
+两个参数只能选一个，商品传plan_id会报错
+
+auto_reply 自动回复内容，非必填，这个字段如果不为空，会覆盖原自动回复内容，不传或者传空字符串，不会更新自动回复内容
+
+auto_random_reply 自动随机回复内容，非必填，如果不为空，才会去更新自动随机回复内容
+
+update_random_reply_type 更新自动随机回复内容的方式，如果需要更新自动随机回复，这个字段是必填项，否则不会更新自动随机回复
+
+  有两种取值：
+
+  1、append追加，追加的方式，爱发电会在内容前面增加一个换行符
+
+  2、overwrite覆盖，直接覆盖原内容
+
+
+
+更新（2025年7月01日）
+webhook增加签名
+
+
+
+更新（2025年8月14日）
+user_id: 上面的 user_id，表明你是谁 params: 具体接口传参的json字符串 ts: 发出请求时秒级时间戳 sign: 针对上面3个数据的签名，防止伪造数据。 sign 的计算规则为：md5(token+请求数据按key排序拼接key和value)
+
+发送私信
+/api/open/send-msg
+params：
+recipient-接收用户
+content-私信内容
+
+频率限制，10/s和1000/h
+
+查看方案
+/api/open/query-plan
+params：
+plan_id-方案id
+
+返回参数
+{
+        "ec": 200,
+        "em": "\u83b7\u53d6\u65b9\u6848\u6210\u529f",
+        "data": {
+                "plan": {
+                        "plan_id": "436af0d0e0xxxxxxxxxxxxxx25c377",
+                        "price": "5.00",
+                        "name": "\u6d4b\u8bd5\u552e\u5356\u52a8\u60012",
+                        "product_type": 1, //0-订阅 1-商品 2-捆绑包 3-自选包 4-售票
+                        "desc": "",
+                        "reply_content": "",
+                        "replay_random_content": "",
+             "independent": 0, //是否独立方案0-非独立 1-独立
+                     "permanent": 0, //是否永久方案 0-非永久 1-永久
+                     "pay_month": 1, //1-月费，3-季费，12-年费
+                        "skus": [{
+                                "sku_id": "436eba6cexxxxxxxxxxxxxx025c377",
+                                "plan_id": "436af0d0e0xxxxxxxxxxxxxx25c377",
+                                "name": "\u578b\u53f71",
+                                "desc": "",
+                                "stock": "",
+                                "price": "5.00",
+                                "reply_content": "",
+                                "reply_random_content": ""
+                        }]
+                }
+        }
+}
+方案类型是订阅时，不会有skus字段
+
+
+
+
+
+
+未解决你的问题？请联系官方客服
+
+需求尚未满足？欢迎在问卷中填写你的需求：开发者需求问卷

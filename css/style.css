@@ -1074,6 +1074,16 @@ img {
   gap: 1rem;
 }
 
+.sponsors-empty {
+  width: 100%;
+  padding: 1.5rem 2rem;
+  text-align: center;
+  border: 1px dashed var(--border);
+  border-radius: 12px;
+  opacity: 0.6;
+  font-weight: 500;
+}
+
 .contributor-avatar {
   position: relative;
   display: block;
