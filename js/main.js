@@ -1301,33 +1301,46 @@ function renderThanks() {
 
 // Sponsors - fetched from the Afdian (爱发电) API via the Cloudflare Pages Function /api/sponsors
 const AFDIAN_SPONSOR_URL = 'https://ifdian.net/a/Fairy_ora_san';
+const SPONSOR_REFRESH_MS = 5 * 60 * 1000; // 每 5 分钟自动刷新一次
+
+function renderSponsorGrid(list) {
+  const grid = document.getElementById('sponsors-grid');
+  if (!grid) return;
+  if (!list || !list.length) {
+    const text = (messages[currentLocale] && messages[currentLocale]['contributors.sponsorsEmpty']) ||
+      'No sponsors yet. Be the first to support us on Afdian!';
+    grid.innerHTML = `<div class="sponsors-empty" data-i18n="contributors.sponsorsEmpty">${text}</div>`;
+    return;
+  }
+  grid.innerHTML = list.map(s => `
+    <a href="${AFDIAN_SPONSOR_URL}" target="_blank" class="contributor-avatar supporter" data-tooltip="${escapeHtml(s.user.name)}">
+      <img src="${s.user.avatar}" alt="${escapeHtml(s.user.name)}" loading="lazy">
+    </a>
+  `).join('');
+}
 
 async function renderSponsors() {
   const grid = document.getElementById('sponsors-grid');
   if (!grid) return;
 
-  const showEmpty = () => {
-    const text = (messages[currentLocale] && messages[currentLocale]['contributors.sponsorsEmpty']) ||
-      'No sponsors yet. Be the first to support us on Afdian!';
-    grid.innerHTML = `<div class="sponsors-empty" data-i18n="contributors.sponsorsEmpty">${text}</div>`;
+  let lastKey = '';
+  const update = async (silent) => {
+    try {
+      const res = await fetch('/api/sponsors');
+      const data = await res.json();
+      const list = data && data.data && data.data.list;
+      const key = JSON.stringify(list || []);
+      if (key === lastKey) return; // 数据未变化，避免闪烁
+      lastKey = key;
+      renderSponsorGrid(list);
+    } catch (e) {
+      if (!silent) renderSponsorGrid(null);
+    }
   };
 
-  try {
-    const res = await fetch('/api/sponsors');
-    const data = await res.json();
-    const list = data && data.data && data.data.list;
-    if (!list || !list.length) {
-      showEmpty();
-      return;
-    }
-    grid.innerHTML = list.map(s => `
-      <a href="${AFDIAN_SPONSOR_URL}" target="_blank" class="contributor-avatar supporter" data-tooltip="${escapeHtml(s.user.name)}">
-        <img src="${s.user.avatar}" alt="${escapeHtml(s.user.name)}" loading="lazy">
-      </a>
-    `).join('');
-  } catch (e) {
-    showEmpty();
-  }
+  await update(false);
+  // 自动轮询，有新赞助者时无需手动刷新页面即可显示
+  setInterval(() => update(true), SPONSOR_REFRESH_MS);
 }
 
 function escapeHtml(str) {
