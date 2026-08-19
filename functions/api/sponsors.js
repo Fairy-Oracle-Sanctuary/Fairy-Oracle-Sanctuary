@@ -19,7 +19,7 @@ export async function onRequest(context) {
       status,
       headers: {
         'Content-Type': 'application/json',
-        'Cache-Control': 'public, max-age=300',
+        'Cache-Control': 'public, max-age=60',
       },
     });
 
